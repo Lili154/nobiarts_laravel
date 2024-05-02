@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Front\CurrencyController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,37 +19,32 @@ use Illuminate\Support\Facades\Route;
 require __DIR__.'/auth.php';
 
 
+Route::post('/update-currency', [CurrencyController::class, 'updateCurrency'])
+    ->name('updateCurrency')
+    ->middleware('SetCurrency');
 
-// Note: OUR WEBSITE WILL HAVE TWO MAJOR SECTIONS: ADMIN ROUTES (for the Admin Panel) & FRONT ROUTES (for the Frontend section routes)!:
 
-// First: Admin Panel routes:
-// The website 'ADMIN' Section: Route Group for routes starting with the 'admin' word (Admin Route Group)    // NOTE: ALL THE ROUTES INSIDE THIS PREFIX STATRT WITH 'admin/', SO THOSE ROUTES INSIDE THE PREFIX, YOU DON'T WRITE '/admin' WHEN YOU DEFINE THEM, IT'LL BE DEFINED AUTOMATICALLY!!
+
 Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function() {
-    Route::match(['get', 'post'], 'login', 'AdminController@login'); // match() method is used to use more than one HTTP request method for the same route, so GET for rendering the login.php page, and POST for the login.php page <form> submission (e.g. GET and POST)    // Matches the '/admin/dashboard' URL (i.e. http://127.0.0.1:8000/admin/dashboard)
-
-
-    // This a Route Group for routes that ALL start with 'admin/-something' and utilizes the 'admin' Authentication Guard    // Note: You must remove the '/admin'/ part from the routes that are written inside this Route Group (e.g.    Route::get('logout');    , NOT    Route::get('admin/logout');    )
+    Route::match(['get', 'post'], 'login', 'AdminController@login');
     Route::group(['middleware' => ['admin']], function() { // using our 'admin' guard (which we created in auth.php)
         Route::get('dashboard', 'AdminController@dashboard'); // Admin login
         Route::get('logout', 'AdminController@logout'); // Admin logout
         Route::match(['get', 'post'], 'update-admin-password', 'AdminController@updateAdminPassword'); // GET request to view the update password <form>, and a POST request to submit the update password <form>
         Route::post('check-admin-password', 'AdminController@checkAdminPassword'); // Check Admin Password // This route is called from the AJAX call in admin/js/custom.js page
-        Route::match(['get', 'post'], 'update-admin-details', 'AdminController@updateAdminDetails'); // Update Admin Details in update_admin_details.blade.php page    // 'GET' method to show the update_admin_details.blade.php page, and 'POST' method for the <form> submission in the same page
-        Route::match(['get', 'post'], 'update-vendor-details/{slug}', 'AdminController@updateVendorDetails'); // Update Vendor Details    // In the slug we can pass: 'personal' which means update vendor personal details, or 'business' which means update vendor business details, or 'bank' which means update vendor bank details    // We'll create one view (not 3) for the 3 pages, but parts inside it will change depending on the $slug value    // GET method to show the update admin details page, POST method for <form> submission
-
-        // Update the vendor's commission percentage (by the Admin) in `vendors` table (for every vendor on their own) in the Admin Panel in admin/admins/view_vendor_details.blade.php (Commissions module: Every vendor must pay a certain commission (that may vary from a vendor to another) for the website owner (admin) on every item sold, and it's defined by the website owner (admin))
+        Route::match(['get', 'post'], 'update-admin-details', 'AdminController@updateAdminDetails');
+        Route::match(['get', 'post'], 'update-vendor-details/{slug}', 'AdminController@updateVendorDetails');
         Route::post('update-vendor-commission', 'AdminController@updateVendorCommission');
 
-        Route::get('admins/{type?}', 'AdminController@admins'); // In case the authenticated user (logged-in user) is superadmin, admin, subadmin, vendor these are the three Admin Management URLs depending on the slug. The slug is the `type` column in `admins` table which can only be: superadmin, admin, subadmin, or vendor    // Used an Optional Route Parameters (or Optional Route Parameters) using a '?' question mark sign, for in case that there's no any {type} passed, the page will show ALL superadmins, admins, subadmins and vendors at the same page
-        Route::get('view-vendor-details/{id}', 'AdminController@viewVendorDetails'); // View further 'vendor' details inside Admin Management table (if the authenticated user is superadmin, admin or subadmin)
-        Route::post('update-admin-status', 'AdminController@updateAdminStatus'); // Update Admin Status using AJAX in admins.blade.php
+        Route::get('admins/{type?}', 'AdminController@admins');
+        Route::get('view-vendor-details/{id}', 'AdminController@viewVendorDetails');
+        Route::post('update-admin-status', 'AdminController@updateAdminStatus');
 
 
-        // Sections (Sections, Categories, Subcategories, Products, Attributes)
         Route::get('sections', 'SectionController@sections');
-        Route::post('update-section-status', 'SectionController@updateSectionStatus'); // Update Sections Status using AJAX in sections.blade.php
-        Route::get('delete-section/{id}', 'SectionController@deleteSection'); // Delete a section in sections.blade.php
-        Route::match(['get', 'post'], 'add-edit-section/{id?}', 'SectionController@addEditSection'); // the slug {id?} is an Optional Parameter, so if it's passed, this means Edit/Update the section, and if not passed, this means Add a Section
+        Route::post('update-section-status', 'SectionController@updateSectionStatus');
+        Route::get('delete-section/{id}', 'SectionController@deleteSection');
+        Route::match(['get', 'post'], 'add-edit-section/{id?}', 'SectionController@addEditSection');
 
         // Categories
         Route::get('categories', 'CategoryController@categories'); // Categories in Catalogue Management in Admin Panel
@@ -182,35 +180,35 @@ Route::get('orders/invoice/download/{id}', 'App\Http\Controllers\Admin\OrderCont
 
 
 
-
+// Route::get('/{locale?}', function($locale = null){
+//     if (isset($locale) && in_array($locale, config('app.available_locales'))){
+//         app()->setLocale($locale);
+//     }
+// })
 // Second: FRONT section routes:
 Route::namespace('App\Http\Controllers\Front')->group(function() {
-    Route::get('/Become-a-vendor', 'IndexController@index');
+    Route::get('/', 'IndexController@index');
 
 
-    // Dynamic Routes for the `url` column in the `categories` table using a foreach loop    // Listing/Categories Routes
-    // Important Note: When you run this Laravel project for the first time and if you're running  the "php artisan migrate" command for the first time, before that you must comment out the $catUrls variable and the following foreach loop in web.php file (routes file), because when we run that artisan command, by then the `categories` table has not been created yet, and this causes an error, so make sure to comment out this code in web.php file before running the "php artisan migrate" command for the first time.
-    $catUrls = \App\Models\Category::select('url')->where('status', 1)->get()->pluck('url')->toArray(); // Routes like: /men, /women, /shirts, ...
-    // dd($catUrls);
+
+    $catUrls = \App\Models\Category::select('url')->where('status', 1)->get()->pluck('url')->toArray();
     foreach ($catUrls as $key => $url) {
-        // Important Note: When you run this Laravel project for the first time and if you're running  the "php artisan migrate" command for the first time, before that you must comment out the $catUrls variable and the following foreach loop in web.php file (routes file), because when we run that artisan command, by then the `categories` table has not been created yet, and this causes an error, so make sure to comment out this code in web.php file before running the "php artisan migrate" command for the first time.
-        Route::match(['get', 'post'], '/' . $url, 'ProductsController@listing'); // used match() for the HTTP 'GET' requests to render listing.blade.php page and the HTTP 'POST' method for the AJAX request of the Sorting Filter or the HTML Form submission and jQuery for the Sorting Filter WITHOUT AJAX, AND ALSO for submitting the Search Form in listing.blade.php    // e.g.    /men    or    /computers    // Important Note: When you run this Laravel project for the first time and if you're running  the "php artisan migrate" command for the first time, before that you must comment out the $catUrls variable and the following foreach loop in web.php file (routes file), because when we run that artisan command, by then the `categories` table has not been created yet, and this causes an error, so make sure to comment out this code in web.php file before running the "php artisan migrate" command for the first time.
+
+        Route::match(['get', 'post'], '/' . $url, 'ProductsController@listing');
     }
 
 
     // Vendor Login/Register
-    Route::get('vendor/login-register', 'VendorController@loginRegister'); // render vendor login_register.blade.php page
+    Route::get('vendor/login-register', 'VendorController@loginRegister');
 
     // Vendor Register
-    Route::post('vendor/register', 'VendorController@vendorRegister'); // the register HTML form submission in vendor login_register.blade.php page
+    Route::post('vendor/register', 'VendorController@vendorRegister');
 
     // Confirm Vendor Account (from 'vendor_confirmation.blade.php) from the mail by Mailtrap
-    Route::get('vendor/confirm/{code}', 'VendorController@confirmVendor'); // {code} is the base64 encoded vendor e-mail with which they have registered which is a Route Parameters/URL Paramters: https://laravel.com/docs/9.x/routing#required-parameters    // this route is requested (accessed/opened) from inside the mail sent to vendor (vendor_confirmation.blade.php)
-
-    // Render Single Product Detail Page in front/products/detail.blade.php
+    Route::get('vendor/confirm/{code}', 'VendorController@confirmVendor');
     Route::get('/product/{id}', 'ProductsController@detail');
 
-    // The AJAX call from front/js/custom.js file, to show the the correct related `price` and `stock` depending on the selected `size` (from the `products_attributes` table)) by clicking the size <select> box in front/products/detail.blade.php
+
     Route::post('get-product-price', 'ProductsController@getProductPrice');
 
     // Show all Vendor products in front/products/vendor_listing.blade.php    // This route is accessed from the <a> HTML element in front/products/vendor_listing.blade.php

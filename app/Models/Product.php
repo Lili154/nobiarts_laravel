@@ -9,8 +9,7 @@ class Product extends Model
 {
     use HasFactory;
 
-
-
+   
     // Every 'product' belongs to a 'section'
     public function section() {
         return $this->belongsTo('App\Models\Section', 'section_id'); // 'section_id' is the foreign key
@@ -43,7 +42,7 @@ class Product extends Model
 
 
 
-   
+
     public static function getDiscountPrice($product_id) { // this method is called in front/index.blade.php
         // Get the product PRICE, DISCOUNT and CATEGORY ID
         $productDetails = \App\Models\Product::select('product_price', 'product_discount', 'category_id')->where('id', $product_id)->first();

@@ -157,7 +157,7 @@
             </li>
 
 
-{{--
+
             <li class="nav-item">
                 <a @if (Session::get('page') == 'banners') style="background: #792D89 !important; color: #FFF !important" @endif class="nav-link" data-toggle="collapse" href="#ui-banners" aria-expanded="false" aria-controls="ui-banners">
                     <i class="icon-layout menu-icon"></i>
@@ -169,7 +169,7 @@
                         <li class="nav-item"> <a @if (Session::get('page') == 'banners') style="background: #792D89 !important; color: #FFF !important" @else style="background: #fff !important; color: #792D89 !important" @endif class="nav-link" href="{{ url('admin/banners') }}">Home Page Banners</a></li>
                     </ul>
                 </div>
-            </li> --}}
+            </li> 
 
 
             <li class="nav-item">

@@ -1,9 +1,8 @@
-{{-- Note: front/products/detail.blade.php is the page that opens when you click on a product in the FRONT home page --}} {{-- $productDetails, categoryDetails and $totalStock are passed in from detail() method in Front/ProductsController.php --}}
+
 @extends('front.layout.layout')
 
 
 @section('content')
-    {{-- Star Rating (of a Product) (in the "Reviews" tab) --}}
     <style>
         *{
             margin: 0;
@@ -32,11 +31,11 @@
             content: '★ ';
         }
         .rate > input:checked ~ label {
-            color: #ffc700;    
+            color: #ffc700;
         }
         .rate:not(:checked) > label:hover,
         .rate:not(:checked) > label:hover ~ label {
-            color: #deb217;  
+            color: #deb217;
         }
         .rate > input:checked + label:hover,
         .rate > input:checked + label:hover ~ label,
@@ -48,7 +47,7 @@
     </style>
 
 
-    
+
     <!-- Page Introduction Wrapper -->
     <div class="page-style-a">
         <div class="container">
@@ -76,8 +75,6 @@
 
 
 
-                    {{-- EasyZoom plugin for zooming product images upon hover --}}
-                    {{-- My EasyZoom (jQuery image zoom plugin): https://i-like-robots.github.io/EasyZoom/ --}}
 
                     <!-- Product-zoom-area -->
                     <div class="easyzoom easyzoom--overlay easyzoom--with-thumbnails"> {{-- EasyZoom plugin --}}
@@ -123,7 +120,7 @@
                         @endif
 
 
-                        {{-- Displaying Laravel Validation Errors: https://laravel.com/docs/9.x/validation#quick-displaying-the-validation-errors --}}    
+                        {{-- Displaying Laravel Validation Errors: https://laravel.com/docs/9.x/validation#quick-displaying-the-validation-errors --}}
                         @if ($errors->any())
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
 
@@ -138,14 +135,12 @@
                         @endif
 
 
-                        {{-- Displaying The Validation Errors: https://laravel.com/docs/9.x/validation#quick-displaying-the-validation-errors AND https://laravel.com/docs/9.x/blade#validation-errors --}}
-                        {{-- Determining If An Item Exists In The Session (using has() method): https://laravel.com/docs/9.x/session#determining-if-an-item-exists-in-the-session --}}
-                        {{-- My Bootstrap success message in case of updating admin password is successful: --}}
+
                         @if (Session::has('success_message')) <!-- Check AdminController.php, updateAdminPassword() method -->
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
 
-                                {{-- There are TWO ways to: Displaying Unescaped Data: https://laravel.com/docs/9.x/blade#displaying-unescaped-data --}}
-                                <strong>Success:</strong> @php echo Session::get('success_message') @endphp       {{-- Displaying Unescaped Data: https://laravel.com/docs/9.x/blade#displaying-unescaped-data --}}
+
+                                <strong>Success:</strong> @php echo Session::get('success_message') @endphp
 
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -158,7 +153,7 @@
                         <div class="section-1-title-breadcrumb-rating">
                             <div class="product-title">
                                 <h1>
-                                    <a href="javascript:;">{{ $productDetails['product_name'] }}</a> {{-- $productDetails is passed in from detail() method in Front/ProductsController.php --}}
+                                    <a href="javascript:;">{{ $productDetails['product_name'] }}</a>
                                 </h1>
                             </div>
 
@@ -206,27 +201,38 @@
                         </div>
                         <div class="section-3-price-original-discount u-s-p-y-14">
 
-                        
 
-                            @php $getDiscountPrice = \App\Models\Product::getDiscountPrice($productDetails['id']) @endphp
+                            @php
+                            // Retrieve the exchange rate from the session
+                            $exchangeRate = session('exchange_rate', 1); // Default exchange rate is 1
+
+                            // Convert product price to the selected currency
+                            $convertedPrice = $productDetails['product_price'] * $exchangeRate;
+
+                            // Calculate discount price if applicable
+                            $getDiscountPrice = \App\Models\Product::getDiscountPrice($productDetails['id']);
+                            $convertedDiscountPrice = $getDiscountPrice > 0 ? $getDiscountPrice * $exchangeRate : 0;
+                        @endphp
 
                             <span class="getAttributePrice">{{-- this <span> will be used by jQuery for getting the respective `price` and `stock` depending on the selected `size` in the <select> box (through the AJAX call). Check front/js/custom.js --}}
 
-                                @if ($getDiscountPrice > 0) {{-- if there's a discount on the product price --}}
+                                @if ($getDiscountPrice > 0)
                                     <div class="price">
-                                        <h4>EGP{{ $getDiscountPrice }}</h4>
+                                        <h4>{{ session('currency') }}{{ $convertedDiscountPrice }}</h4>
                                     </div>
                                     <div class="original-price">
                                         <span>Original Price:</span>
-                                        <span>EGP{{ $productDetails['product_price'] }}</span> {{-- the product original price (without discount) --}}
+                                        <h4>{{ session('currency') }}{{ $convertedPrice }}</h4>
+
                                     </div>
                                 @else {{-- if there's no discount on the product price --}}
                                     <div class="price">
-                                        <h4>EGP{{ $productDetails['product_price'] }}</h4> {{-- the product original price (without discount) --}}
+                                        <h4>{{ session('currency') }}{{ $convertedPrice }}</h4>
+
                                     </div>
                                 @endif
 
-                            </span> 
+                            </span>
 
 
 
@@ -282,19 +288,19 @@
 
 
 
-                        {{-- Add to Cart <form> --}} 
+                        {{-- Add to Cart <form> --}}
                         <form action="{{ url('cart/add') }}" method="Post" class="post-form">
                             @csrf {{-- Preventing CSRF Requests: https://laravel.com/docs/9.x/csrf#preventing-csrf-requests --}}
 
 
-                            <input type="hidden" name="product_id" value="{{ $productDetails['id'] }}"> {{-- Add to Cart <form> --}} 
+                            <input type="hidden" name="product_id" value="{{ $productDetails['id'] }}"> {{-- Add to Cart <form> --}}
 
 
                             <div class="section-5-product-variants u-s-p-y-14">
 
 
 
-                                {{-- Managing Product Colors (using the `group_code` column in `products` table) --}} 
+                                {{-- Managing Product Colors (using the `group_code` column in `products` table) --}}
                                 @if (count($groupProducts) > 0) {{-- if there's a value for the `group_code` column (in `products` table) for the currently viewed product --}}
                                     <div>
                                         <div><strong>Product Colors</strong></div>
@@ -330,7 +336,7 @@
                             </div>
                             <div class="section-6-social-media-quantity-actions u-s-p-y-14">
 
-                                
+
                                 <div class="quantity-wrapper u-s-m-b-22">
                                     <span>Quantity:</span>
                                     <div class="quantity">
@@ -349,10 +355,10 @@
                         </form>
 
 
-                        {{-- PIN code Availability Check: check if the PIN code of the user's Delivery Address exists in our database (in both `cod_pincodes` and `prepaid_pincodes`) or not via AJAX. Check front/js/custom.js --}} 
+
                         <br><br><b>Delivery</b>
                         <input type="text" id="pincode" placeholder="Check Pincode" required>
-                        <button type="button" id="checkPincode">Go</button> {{-- We'll use that checkPincode HTML id attribute in front/js/custom.js as a handle for jQuery --}}
+                        <button type="button" id="checkPincode">Go</button>
 
 
                     </div>
@@ -390,7 +396,7 @@
                                             <source src="{{ url('front/videos/product_videos/' . $productDetails['product_video']) }}" type="video/mp4">
                                         </video>
                                     @else
-                                        Product Video does not exist    
+                                        Product Video does not exist
                                     @endif
 
 
@@ -421,20 +427,20 @@
                                                     // dd($filter);
                                                 @endphp
 
-                                                @if (isset($productDetails['category_id'])) {{-- which comes from the AJAX call (passed in through the categoryFilters() method in Admin/FilterController.php, and ALSO may come from the if condition above there (in this page) in case of 'Edit Product' (not 'Add a Product') from addEditProduct() method in Admin/ProductsController --}}
+                                                @if (isset($productDetails['category_id']))
                                                     @php
                                                         // dd($filter);
 
-                                                        // Firstly, for every filter in the `products_filters` table, Get the filter's (from the foreach loop) `cat_ids` using filterAvailable() method, then check if the current category id (using the $productDetails['category_id'] variable and depending on the URL) exists in the filter's `cat_ids`. If it exists, then show the filter, if not, then don't show the filter
+
                                                         $filterAvailable = \App\Models\ProductsFilter::filterAvailable($filter['id'], $productDetails['category_id']);
                                                     @endphp
 
-                                                    @if ($filterAvailable == 'Yes') {{-- if the filter has the current productDetails['category_id'] in its `cat_ids` --}}
+                                                    @if ($filterAvailable == 'Yes')
 
                                                         <tr>
                                                             <td>{{ $filter['filter_name'] }}</td>
                                                             <td>
-                                                                @foreach ($filter['filter_values'] as $value) {{-- show the related values of the filter of the product --}}
+                                                                @foreach ($filter['filter_values'] as $value)
                                                                     @php
                                                                         // echo '<pre>', var_dump($value), '</pre>'; exit;
                                                                     @endphp
@@ -632,7 +638,7 @@
 
 
 
-                                {{-- Show similar products (or related products) (functionality) by getting other products from THE SAME CATEGORY --}}    
+                                {{-- Show similar products (or related products) (functionality) by getting other products from THE SAME CATEGORY --}}
                                 @foreach ($similarProducts as $product)
                                     <div class="item">
                                         <div class="image-container">
@@ -643,7 +649,7 @@
                                                 @php
                                                     $product_image_path = 'front/images/product_images/small/' . $product['product_image'];
                                                 @endphp
-                        
+
                                                 @if (!empty($product['product_image']) && file_exists($product_image_path)) {{-- if the product image exists in BOTH database table AND filesystem (on server) --}}
                                                     <img class="img-fluid" src="{{ asset($product_image_path) }}" alt="Product">
                                                 @else {{-- show the dummy image --}}
@@ -695,7 +701,7 @@
                                             @if ($getDiscountPrice > 0) {{-- If there's a discount on the price, show the price before (the original price) and after (the new price) the discount --}}
                                                 <div class="price-template">
                                                     <div class="item-new-price">
-                                                        EGP{{ $getDiscountPrice }} 
+                                                        EGP{{ $getDiscountPrice }}
                                                     </div>
                                                     <div class="item-old-price">
                                                         EGP{{ $product['product_price'] }}
@@ -748,7 +754,7 @@
                                                 @php
                                                     $product_image_path = 'front/images/product_images/small/' . $product['product_image'];
                                                 @endphp
-                        
+
                                                 @if (!empty($product['product_image']) && file_exists($product_image_path)) {{-- if the product image exists in BOTH database table AND filesystem (on server) --}}
                                                     <img class="img-fluid" src="{{ asset($product_image_path) }}" alt="Product">
                                                 @else {{-- show the dummy image --}}
@@ -799,7 +805,7 @@
                                             @if ($getDiscountPrice > 0) {{-- If there's a discount on the price, show the price before (the original price) and after (the new price) the discount --}}
                                                 <div class="price-template">
                                                     <div class="item-new-price">
-                                                        EGP{{ $getDiscountPrice }} 
+                                                        EGP{{ $getDiscountPrice }}
                                                     </div>
                                                     <div class="item-old-price">
                                                         EGP{{ $product['product_price'] }}

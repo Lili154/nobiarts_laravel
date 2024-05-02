@@ -97,6 +97,15 @@ return [
 
     'fallback_locale' => 'en',
 
+
+
+    'available_locales'=> [
+        'Eng' => 'en',
+        'Rus' => 'ru',
+        'Arm' => 'hy',
+        'Bgn' => 'bgn',
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Faker Locale

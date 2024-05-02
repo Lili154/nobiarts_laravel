@@ -14,3 +14,10 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+.env
+.htaccess
+/config/database.php
+/package-lock.json
+/package.json
+/composer.json
+composer.lock

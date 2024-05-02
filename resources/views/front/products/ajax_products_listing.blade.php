@@ -13,7 +13,7 @@
                             $product_image_path = 'front/images/product_images/small/' . $product['product_image'];
                         @endphp
 
-                        @if (!empty($product['product_image']) && file_exists($product_image_path)) {{-- if the product image exists in BOTH database table AND filesystem (on server) --}}
+                        @if (!empty($product['product_image']) && file_exists($product_image_path)) 
                             <img class="img-fluid" src="{{ asset($product_image_path) }}" alt="Product">
                         @else {{-- show the dummy image --}}
                             <img class="img-fluid" src="{{ asset('front/images/product_images/small/no-image.png') }}" alt="Product">
@@ -57,25 +57,27 @@
 
 
 
-                    {{-- Call the static getDiscountPrice() method in the Product.php Model to determine the final price of a product because a product can have a discount from TWO things: either a `CATEGORY` discount or `PRODUCT` discout     --}}
+
                     @php
-                        $getDiscountPrice = \App\Models\Product::getDiscountPrice($product['id']);
-                    @endphp
+                    $getDiscountPrice = \App\Models\Product::getDiscountPrice($product['id']);
+                    $exchangeRate = session('exchange_rate', 1);
+                    $convertedPrice = $product['product_price'] * $exchangeRate;
+                    $convertedDiscountPrice = $getDiscountPrice > 0 ? $getDiscountPrice * $exchangeRate : 0;
+                @endphp
 
-
-                    @if ($getDiscountPrice > 0) {{-- If there's a discount on the price, show the price before (the original price) and after (the new price) the discount --}}
+                @if ($convertedDiscountPrice > 0) {{-- If there's a discount on the price, show the price before (the original price) and after (the new price) the discount --}}
                         <div class="price-template">
                             <div class="item-new-price">
-                                EGP{{ $getDiscountPrice }}
+                                {{ $convertedDiscountPrice }}
                             </div>
                             <div class="item-old-price">
-                                EGP{{ $product['product_price'] }}
+                                {{ $convertedPrice }}
                             </div>
                         </div>
                     @else {{-- if there's no discount on the price, show the original price --}}
                         <div class="price-template">
                             <div class="item-new-price">
-                                EGP{{ $product['product_price'] }}
+                                {{ $convertedPrice }}
                             </div>
                         </div>
                     @endif
@@ -86,7 +88,7 @@
 
 
 
-                
+
                 @php
                     $isProductNew = \App\Models\Product::isProductNew($product['id'])
                 @endphp
@@ -97,7 +99,7 @@
                 @endif
 
 
-                
+
             </div>
         </div>
     @endforeach
@@ -106,3 +108,4 @@
 
 </div>
 <!-- Row-of-Product-Container /- -->
+

@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\APi\CategoryController;
-use App\Http\Controllers\APi\ProductController;
+use App\Http\Controllers\API\ProductController;
 
 
 /*

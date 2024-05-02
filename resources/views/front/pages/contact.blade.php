@@ -30,8 +30,7 @@
                         <h1 class="contact-h1">Get In Touch With Us</h1>
 
 
-                        {{-- Displaying Laravel Validation Errors: https://laravel.com/docs/9.x/validation#quick-displaying-the-validation-errors --}}    
-                        {{-- Determining If An Item Exists In The Session (using has() method): https://laravel.com/docs/9.x/session#determining-if-an-item-exists-in-the-session --}}
+
                         @if (Session::has('error_message')) <!-- Check AdminController.php, updateAdminPassword() method -->
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 <strong>Error:</strong> {{ Session::get('error_message') }}
@@ -43,7 +42,7 @@
 
 
 
-                        {{-- Displaying Laravel Validation Errors: https://laravel.com/docs/9.x/validation#quick-displaying-the-validation-errors --}}    
+
                         @if ($errors->any())
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
 
@@ -57,11 +56,6 @@
                             </div>
                         @endif
 
-
-                        {{-- Displaying The Validation Errors: https://laravel.com/docs/9.x/validation#quick-displaying-the-validation-errors AND https://laravel.com/docs/9.x/blade#validation-errors --}} 
-                        {{-- Determining If An Item Exists In The Session (using has() method): https://laravel.com/docs/9.x/session#determining-if-an-item-exists-in-the-session --}}
-                        {{-- Our Bootstrap success message in case of updating admin password is successful: --}}
-                        {{-- Displaying Success Message --}}
                         @if (Session::has('success_message')) <!-- Check vendorRegister() method in Front/VendorController.php -->
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 <strong>Success:</strong> {{ Session::get('success_message') }}
@@ -73,32 +67,31 @@
 
 
                         <form action="{{ url('contact') }}" method="post">
-                            @csrf {{-- Preventing CSRF Requests: https://laravel.com/docs/9.x/csrf#preventing-csrf-requests --}}
-
+                            @csrf
                             <div class="group-inline u-s-m-b-30">
                                 <div class="group-1 u-s-p-r-16">
                                     <label for="contact-name">Your Name
                                         <span class="astk">*</span>
                                     </label>
-                                    <input type="text" id="contact-name" class="text-field" placeholder="Name" name="name" value="{{ old('name') }}"> {{-- Retrieving Old Input: https://laravel.com/docs/9.x/requests#retrieving-old-input --}}
+                                    <input type="text" id="contact-name" class="text-field" placeholder="Name" name="name" value="{{ old('name') }}">
                                 </div>
                                 <div class="group-2">
                                     <label for="contact-email">Your Email
                                         <span class="astk">*</span>
                                     </label>
-                                    <input type="email" id="contact-email" class="text-field" placeholder="Email" name="email" value="{{ old('email') }}"> {{-- Retrieving Old Input: https://laravel.com/docs/9.x/requests#retrieving-old-input --}}
+                                    <input type="email" id="contact-email" class="text-field" placeholder="Email" name="email" value="{{ old('email') }}">
                                 </div>
                             </div>
                             <div class="u-s-m-b-30">
                                 <label for="contact-subject">Subject
                                     <span class="astk">*</span>
                                 </label>
-                                <input type="text" id="contact-subject" class="text-field" placeholder="Subject" name="subject" value="{{ old('subject') }}"> {{-- Retrieving Old Input: https://laravel.com/docs/9.x/requests#retrieving-old-input --}}
+                                <input type="text" id="contact-subject" class="text-field" placeholder="Subject" name="subject" value="{{ old('subject') }}">
                             </div>
                             <div class="u-s-m-b-30">
                                 <label for="contact-message">Message:</label>
                                 <span class="astk">*</span>
-                                <textarea class="text-area" id="contact-message" name="message">{{ old('message') }}</textarea> {{-- Retrieving Old Input: https://laravel.com/docs/9.x/requests#retrieving-old-input --}}
+                                <textarea class="text-area" id="contact-message" name="message">{{ old('message') }}</textarea>
                             </div>
                             <div class="u-s-m-b-30">
                                 <button type="submit" class="button button-outline-secondary">Send Message</button>

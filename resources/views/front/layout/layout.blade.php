@@ -88,7 +88,7 @@
         <div id="app">
 
             {{-- Header partial --}}
-            {{-- @include('front.layout.header') --}}
+            @include('front.layout.header')
 
 
             {{-- Middle Content (varies from a page to another) --}}

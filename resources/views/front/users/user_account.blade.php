@@ -3,13 +3,12 @@
 
 
 @section('content')
-@include('front.layout.header')
     <!-- Page Introduction Wrapper -->
     <div class="page-style-a">
         <div class="container">
             <div class="page-intro">
                 <h2 style="color:#792D89">My Account</h2>
-                {{-- <ul class="bread-crumb">
+                <ul class="bread-crumb">
                     <li class="has-separator">
                         <i class="ion ion-md-home"></i>
                         <a href="index.html">Home</a>
@@ -17,7 +16,7 @@
                     <li class="is-marked">
                         <a href="account.html">Account</a>
                     </li>
-                </ul> --}}
+                </ul>
             </div>
         </div>
     </div>

@@ -6,7 +6,6 @@
 
 
 @section('content')
-@include('front.layout.header')
 
     <!-- Page Introduction Wrapper -->
     <div class="page-style-a">
