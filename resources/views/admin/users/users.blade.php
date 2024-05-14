@@ -9,7 +9,7 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Users</h4>
+                            <h4 class="card-title">@lang('public.users')</h4>
 
 
                             {{-- Displaying The Validation Errors: https://laravel.com/docs/9.x/validation#quick-displaying-the-validation-errors AND https://laravel.com/docs/9.x/blade#validation-errors --}}
@@ -17,7 +17,7 @@
                             {{-- Our Bootstrap success message in case of updating admin password is successful: --}}
                             @if (Session::has('success_message')) <!-- Check AdminController.php, updateAdminPassword() method -->
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    <strong>Success:</strong> {{ Session::get('success_message') }}
+                                    <strong>@lang('public.success:')</strong> {{ Session::get('success_message') }}
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                     </button>
@@ -31,15 +31,15 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Address</th>
-                                            <th>City</th>
-                                            <th>State</th>
-                                            <th>Country</th>
-                                            <th>Pincode</th>
-                                            <th>Mobile</th>
-                                            <th>Email</th>
-                                            <th>Status</th>
+                                            <th>@lang('public.name')</th>
+                                            <th>@lang('public.address')</th>
+                                            <th>@lang('public.city')</th>
+                                            <th>@lang('public.state')</th>
+                                            <th>@lang('public.country')</th>
+                                            <th>@lang('public.pincode')</th>
+                                            <th>@lang('public.mobile')</th>
+                                            <th>@lang('public.email')</th>
+                                            <th>@lang('public.status')</th>
                                         </tr>
                                     </thead>
                                     <tbody>

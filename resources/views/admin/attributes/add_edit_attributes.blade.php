@@ -10,7 +10,7 @@
                 <div class="col-md-12 grid-margin">
                     <div class="row">
                         <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                            <h4 class="card-title">Attributes</h4> {{-- meaning Product attributes --}}
+                            <h4 class="card-title">@lang('public.attributes')</h4> {{-- meaning Product attributes --}}
                         </div>
                         <div class="col-12 col-xl-4">
                             <div class="justify-content-end d-flex">
@@ -34,14 +34,14 @@
                 <div class="col-md-6 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Add Attributes</h4>
+                            <h4 class="card-title">@lang('public.add attributes')</h4>
 
 
                             {{-- Our Bootstrap error code in case of wrong current password or the new password and confirm password are not matching: --}}
                             {{-- Determining If An Item Exists In The Session (using has() method): https://laravel.com/docs/9.x/session#determining-if-an-item-exists-in-the-session --}}
                             @if (Session::has('error_message')) <!-- Check AdminController.php, updateAdminPassword() method -->
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    <strong>Error:</strong> {{ Session::get('error_message') }}
+                                    <strong>@lang('public.error:')</strong> {{ Session::get('error_message') }}
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -50,7 +50,7 @@
 
 
 
-                            {{-- Displaying Laravel Validation Errors: https://laravel.com/docs/9.x/validation#quick-displaying-the-validation-errors --}}    
+                            {{-- Displaying Laravel Validation Errors: https://laravel.com/docs/9.x/validation#quick-displaying-the-validation-errors --}}
                             @if ($errors->any())
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
 
@@ -71,35 +71,35 @@
                             {{-- Our Bootstrap success message in case of updating admin password is successful: --}}
                             @if (Session::has('success_message')) <!-- Check AdminController.php, updateAdminPassword() method -->
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    <strong>Success:</strong> {{ Session::get('success_message') }}
+                                    <strong>@lang('public.success:')</strong> {{ Session::get('success_message') }}
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                             @endif
-                
-
-                            
 
 
-                            
+
+
+
+
                             <form class="forms-sample" action="{{ url('admin/add-edit-attributes/' . $product['id']) }}" method="post">
                                 @csrf
 
                                 <div class="form-group">
-                                    <label for="product_name">Product Name:</label>
+                                    <label for="product_name">@lang('public.product name'):</label>
                                     &nbsp; {{ $product['product_name'] }}
                                 </div>
                                 <div class="form-group">
-                                    <label for="product_code">Product Code:</label>
+                                    <label for="product_code">@lang('public.product code'):</label>
                                     &nbsp; {{ $product['product_code'] }}
                                 </div>
                                 <div class="form-group">
-                                    <label for="product_color">Product Color:</label>
+                                    <label for="product_color">@lang('public.product color'):</label>
                                     &nbsp; {{ $product['product_color'] }}
                                 </div>
                                 <div class="form-group">
-                                    <label for="product_price">Product Price:</label>
+                                    <label for="product_price">@lang('product price'):</label>
                                     &nbsp; {{ $product['product_price'] }}
                                 </div>
                                 <div class="form-group">
@@ -111,28 +111,28 @@
                                     @endif
                                 </div>
 
-                
 
-                                {{-- Add Remove Input Fields Dynamically using jQuery: https://www.codexworld.com/add-remove-input-fields-dynamically-using-jquery/ --}} 
+
+                                {{-- Add Remove Input Fields Dynamically using jQuery: https://www.codexworld.com/add-remove-input-fields-dynamically-using-jquery/ --}}
                                 {{-- Products attributes add//remove input fields dynamically using jQuery --}}
                                 <div class="form-group">
                                     <div class="field_wrapper">
                                         <div>
-                                            <input type="text" name="size[]"  placeholder="Size"  style="width:100px" required> {{-- !! Note that the "name" HTML attribute is an ARRAY (using SQUARE BRAKETS [] !!) --}}
+                                            <input type="text" name="size[]"  placeholder="@lang('public.size')"  style="width:100px" required> {{-- !! Note that the "name" HTML attribute is an ARRAY (using SQUARE BRAKETS [] !!) --}}
                                             <input type="text" name="sku[]"   placeholder="SKU"   style="width:100px" required> {{-- !! Note that the "name" HTML attribute is an ARRAY (using SQUARE BRAKETS [] !!) --}}
-                                            <input type="text" name="price[]" placeholder="Price" style="width:100px" required> {{-- !! Note that the "name" HTML attribute is an ARRAY (using SQUARE BRAKETS [] !!) --}}
-                                            <input type="text" name="stock[]" placeholder="Stock" style="width:100px" required> {{-- !! Note that the "name" HTML attribute is an ARRAY (using SQUARE BRAKETS [] !!) --}}
-                                            <a href="javascript:void(0);" class="add_button" title="Add Attributes">Add</a> {{-- Add another 4 input fields like the former --}}
+                                            <input type="text" name="price[]" placeholder="@lang('public.price')" style="width:100px" required> {{-- !! Note that the "name" HTML attribute is an ARRAY (using SQUARE BRAKETS [] !!) --}}
+                                            <input type="text" name="stock[]" placeholder="@lang('public.stock')" style="width:100px" required> {{-- !! Note that the "name" HTML attribute is an ARRAY (using SQUARE BRAKETS [] !!) --}}
+                                            <a href="javascript:void(0);" class="add_button" title="Add Attributes">@lang('public.add')</a> {{-- Add another 4 input fields like the former --}}
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                <button type="reset"  class="btn btn-light">Cancel</button>
+                                <button type="submit" class="btn btn-primary mr-2">@lang('public.submit')</button>
+                                <button type="reset"  class="btn btn-light">@lang('public.cancel')</button>
                             </form>
 
                             <br><br>
-                            
-                            <h4 class="card-title">Product Attributes</h4>
+
+                            <h4 class="card-title">@lang('public.product attributes')</h4>
 
                             <form method="post" action="{{ url('admin/edit-attributes/' . $product['id']) }}">
                                 @csrf
@@ -142,11 +142,11 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Size</th>
+                                            <th>@lang('public.size')</th>
                                             <th>SKU</th>
-                                            <th>Price</th>
-                                            <th>Stock</th>
-                                            <th>Actions</th>
+                                            <th>@lang('public.price')</th>
+                                            <th>@lang('public.stock')</th>
+                                            <th>@lang('public.actions')</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -178,7 +178,7 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                                <button type="submit" class="btn btn-primary">Update Attributes</button>
+                                <button type="submit" class="btn btn-primary">@lang('public.update attributes')</button>
                             </form>
                         </div>
                     </div>

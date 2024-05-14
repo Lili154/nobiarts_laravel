@@ -47,19 +47,19 @@
     <section class="section-maker">
         <div class="container">
             <div class="sec-maker-header text-center">
-                <h3 class="sec-maker-h3">TOP COLLECTION</h3>
+                <h3 class="sec-maker-h3">@lang('public.top callection')</h3>
                 <ul class="nav tab-nav-style-1-a justify-content-center">
                     <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#men-latest-products">New Arrivals</a>
+                        <a class="nav-link active" data-toggle="tab" href="#men-latest-products">@lang('public.new arrivals')</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#men-best-selling-products">Best Sellers</a>
+                        <a class="nav-link" data-toggle="tab" href="#men-best-selling-products">@lang('public.best sellers')</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#discounted-products">Discounted Products</a>
+                        <a class="nav-link" data-toggle="tab" href="#discounted-products">@lang('public.discounted products')</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#men-featured-products">Featured Products</a>
+                        <a class="nav-link" data-toggle="tab" href="#men-featured-products">@lang('public.featured products')</a>
                     </li>
                 </ul>
             </div>
@@ -93,10 +93,10 @@
                                                     @endif
                                                 </a>
                                                 <div class="item-action-behaviors">
-                                                    <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
-                                                    <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                                    <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                                    <a class="item-addCart" href="{{ url('product/' . $product['id']) }}">Add to Cart</a>
+                                                    <a class="item-quick-look" data-toggle="modal" href="#quick-view">@lang('public.quick look')</a>
+                                                    <a class="item-mail" href="javascript:void(0)">@lang('public.email')</a>
+                                                    <a class="item-addwishlist" href="javascript:void(0)">@lang('public.add to wishlist')</a>
+                                                    <a class="item-addCart" href="{{ url('product/' . $product['id']) }}">@lang('public.add to cart')</a>
                                                 </div>
                                             </div>
                                             <div class="item-content">
@@ -146,7 +146,7 @@
 
                                             </div>
                                             <div class="tag new">
-                                                <span>NEW</span>
+                                                <span>@lang('public.new')</span>
                                             </div>
                                         </div>
                                     @endforeach
@@ -181,10 +181,10 @@
                                                     @endif
                                                 </a>
                                                 <div class="item-action-behaviors">
-                                                    <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
-                                                    <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                                    <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                                    <a class="item-addCart" href="{{ url('product/' . $product['id']) }}">Add to Cart</a>
+                                                    <a class="item-quick-look" data-toggle="modal" href="#quick-view">@lang('public.quick look')</a>
+                                                    <a class="item-mail" href="javascript:void(0)">@lang('public.email')</a>
+                                                    <a class="item-addwishlist" href="javascript:void(0)">@lang('public.add to wishlist')</a>
+                                                    <a class="item-addCart" href="{{ url('product/' . $product['id']) }}">@lang('public.add to cart')</a>
                                                 </div>
                                             </div>
                                             <div class="item-content">
@@ -227,7 +227,7 @@
                                                 @endif
                                             </div>
                                             <div class="tag new">
-                                                <span>NEW</span>
+                                                <span>@lang('public.new')</span>
                                             </div>
                                         </div>
                                     @endforeach
@@ -262,10 +262,10 @@
                                                     @endif
                                                 </a>
                                                 <div class="item-action-behaviors">
-                                                    <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
-                                                    <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                                    <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                                    <a class="item-addCart" href="{{ url('product/' . $product['id']) }}">Add to Cart</a>
+                                                    <a class="item-quick-look" data-toggle="modal" href="#quick-view">@lang('public.quick look')</a>
+                                                    <a class="item-mail" href="javascript:void(0)">@lang('public.email')</a>
+                                                    <a class="item-addwishlist" href="javascript:void(0)">@lang('public.add to wishlist')</a>
+                                                    <a class="item-addCart" href="{{ url('product/' . $product['id']) }}">@lang('public.add to cart')</a>
                                                 </div>
                                             </div>
                                             <div class="item-content">
@@ -308,7 +308,7 @@
                                                 @endif
                                             </div>
                                             <div class="tag new">
-                                                <span>NEW</span>
+                                                <span>@lang('public.new')</span>
                                             </div>
                                         </div>
                                     @endforeach
@@ -343,10 +343,10 @@
                                                     @endif
                                                 </a>
                                                 <div class="item-action-behaviors">
-                                                    <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
-                                                    <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                                    <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                                    <a class="item-addCart" href="{{ url('product/' . $product['id']) }}">Add to Cart</a>
+                                                    <a class="item-quick-look" data-toggle="modal" href="#quick-view">@lang('public.quick look')</a>
+                                                    <a class="item-mail" href="javascript:void(0)">@lang('public.email')</a>
+                                                    <a class="item-addwishlist" href="javascript:void(0)">@lang('public.add to wishlist')</a>
+                                                    <a class="item-addCart" href="{{ url('product/' . $product['id']) }}">@lang('public.add to cart')</a>
                                                 </div>
                                             </div>
                                             <div class="item-content">
@@ -389,7 +389,7 @@
                                                 @endif
                                             </div>
                                             <div class="tag new">
-                                                <span>NEW</span>
+                                                <span>@lang('public.new')</span>
                                             </div>
                                         </div>
                                     @endforeach
@@ -433,9 +433,9 @@
                                 <i class="ion ion-md-star"></i>
                             </div>
                             <h2>
-                                Great Value
+                               @lang('public.great value')
                             </h2>
-                            <p>We offer competitive prices on our 100 million plus product range</p>
+                            <p>@lang('public.we offer competitive prices on our 100 million plus product range')</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-3">
@@ -444,9 +444,9 @@
                                 <i class="ion ion-md-cash"></i>
                             </div>
                             <h2>
-                                Shop with Confidence
+                                @lang('public.shop with confidence')
                             </h2>
-                            <p>Our Protection covers your purchase from click to delivery</p>
+                            <p>@lang('public.our protection covers your purchase from click to delivery')</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-3">
@@ -455,9 +455,9 @@
                                 <i class="ion ion-ios-card"></i>
                             </div>
                             <h2>
-                                Safe Payment
+                                @lang('public.safe payment')
                             </h2>
-                            <p>Pay with the world’s most popular and secure payment methods</p>
+                            <p>@lang('public.pay with the world’s most popular and secure payment methods')</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-3">
@@ -466,9 +466,9 @@
                                 <i class="ion ion-md-contacts"></i>
                             </div>
                             <h2>
-                                24/7 Help Center
+                                @lang('public.24/7 Help Center')
                             </h2>
-                            <p>Round-the-clock assistance for a smooth shopping experience</p>
+                            <p>@lang('public.round-the-clock assistance for a smooth shopping experience')</p>
                         </div>
                     </div>
                 </div>

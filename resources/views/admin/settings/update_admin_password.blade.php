@@ -8,7 +8,7 @@
                 <div class="col-md-12 grid-margin">
                     <div class="row">
                         <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                            <h3 class="font-weight-bold">Admin Settings</h3>
+                            <h3 class="font-weight-bold">@lang('public.admin settings')</h3>
                         </div>
                         <div class="col-12 col-xl-4">
                             <div class="justify-content-end d-flex">
@@ -38,7 +38,7 @@
                             {{-- Determining If An Item Exists In The Session (using has() method): https://laravel.com/docs/9.x/session#determining-if-an-item-exists-in-the-session --}}
                             @if (Session::has('error_message')) <!-- Check AdminController.php, updateAdminPassword() method -->
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <strong>Error:</strong> {{ Session::get('error_message') }}
+                                <strong>@lang('public.error:')</strong> {{ Session::get('error_message') }}
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
@@ -52,7 +52,7 @@
                             {{-- Our Bootstrap success message in case of updating admin password is successful: --}}
                             @if (Session::has('success_message')) <!-- Check AdminController.php, updateAdminPassword() method -->
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    <strong>Success:</strong> {{ Session::get('success_message') }}
+                                    <strong>@lang('public.success:')</strong> {{ Session::get('success_message') }}
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                     </button>
@@ -61,7 +61,7 @@
 
 
 
-                            <h4 class="card-title">Update Admin Password</h4>
+                            <h4 class="card-title">@lang('public.update admin password')</h4>
 
 
 
@@ -70,28 +70,28 @@
 
 
                                 <div class="form-group">
-                                    <label>Admin Username/Email</label>
+                                    <label>@lang('public.admin username/email')</label>
                                     <input class="form-control" value="{{ $adminDetails['email'] }}" readonly> <!-- Check updateAdminPassword() method in AdminController.php -->
                                 </div>
                                 <div class="form-group">
-                                    <label>Admin Type</label>
+                                    <label>@lang('public.admin type')</label>
                                     <input class="form-control" value="{{ $adminDetails['type'] }}" readonly>
                                 </div>
                                 <div class="form-group">
-                                    <label for="current_password">Current Password</label>
+                                    <label for="current_password">@lang('public.current password')</label>
                                     <input type="password" class="form-control" id="current_password" placeholder="Enter Current Password" name="current_password" required>
                                     <span id="check_password"></span> <!-- We'll use it in the AJAX call in admin/js/custom.js to show if the password is correct or not -->
                                 </div>
                                 <div class="form-group">
-                                    <label for="new_password">New Password</label>
+                                    <label for="new_password">@lang('public.new password')</label>
                                     <input type="password" class="form-control" id="new_password" placeholder="Enter New Password" name="new_password" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="confirm_password">Confirm Password</label>
+                                    <label for="confirm_password">@lang('public.confirm pasword')</label>
                                     <input type="password" class="form-control" id="confirm_password" placeholder="Confirm Password" name="confirm_password" required>
                                 </div>
-                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                <button type="reset"  class="btn btn-light">Cancel</button>
+                                <button type="submit" class="btn btn-primary mr-2">@lang('public.submit')</button>
+                                <button type="reset"  class="btn btn-light">@lang('public.cancel')</button>
                             </form>
 
 

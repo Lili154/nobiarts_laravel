@@ -1,14 +1,14 @@
-{{-- This page is included by the add_edit_product.php page to show the related filters <select> box for the newly added product DEPENDING ON THE SELECTED CATEGORY of the product --}} 
+{{-- This page is included by the add_edit_product.php page to show the related filters <select> box for the newly added product DEPENDING ON THE SELECTED CATEGORY of the product --}}
 
 
 @php
-    
+
     $productFilters = \App\Models\ProductsFilter::productFilters(); // Get ALL the (enabled/active) Filters
     // dd($productFilters);
 
-    // Note: $category_id may come from TWO places: the AJAX call and gets passed in through categoryFilters() method in Admin/FilterController.php    OR    the $product object in case of 'Edit Product' from addEditProduct() method in Admin/ProductsController    
+    // Note: $category_id may come from TWO places: the AJAX call and gets passed in through categoryFilters() method in Admin/FilterController.php    OR    the $product object in case of 'Edit Product' from addEditProduct() method in Admin/ProductsController
 
-    // In case of 'Edit a Product' only (NOT 'Add a new Product' and NOT from the $category_id which comes from the AJAX call), where $product is passed from addEditProduct() method in Admin/ProductsController    
+    // In case of 'Edit a Product' only (NOT 'Add a new Product' and NOT from the $category_id which comes from the AJAX call), where $product is passed from addEditProduct() method in Admin/ProductsController
     if (isset($product['category_id'])) {
         $category_id = $product['category_id'];
     }
@@ -34,9 +34,9 @@
 
         @if ($filterAvailable == 'Yes') {{-- if the filter has the current category_id in its `cat_ids` --}}
             <div class="form-group">
-                <label for="{{ $filter['filter_column'] }}">Select {{ $filter['filter_name'] }}</label> {{-- ONLY show the related filters of the added product! (NOT ALL FILTERS!) --}}
+                <label for="{{ $filter['filter_column'] }}">@lang('public.select') {{ $filter['filter_name'] }}</label> {{-- ONLY show the related filters of the added product! (NOT ALL FILTERS!) --}}
                 <select name="{{ $filter['filter_column'] }}" id="{{ $filter['filter_column'] }}" class="form-control text-dark"> {{-- $filter['filter_column'] is like 'ram' --}}
-                    <option value="">Select Filter Value</option>
+                    <option value="">@lang('public.select filter value')</option>
                     @foreach ($filter['filter_values'] as $value) {{-- show the related values of the filter of the product --}}
                         @php
                             // echo '<pre>', var_dump($value), '</pre>'; exit;

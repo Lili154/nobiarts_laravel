@@ -13,14 +13,14 @@
 
 
         <table>
-            <tr><td>Dear {{ $name }},</td></tr>
+            <tr><td>@lang('public.dear') {{ $name }},</td></tr>
             <tr><td>&nbsp;</td></tr>
-            <tr><td>Please click on below link to activate your Nobiarts:-</td></tr>
+            <tr><td>@lang('public.please click on below link to activate your Nobiarts:')</td></tr>
             <tr><td>&nbsp;</td></tr>
-            <tr><td><a href="{{ url('/user/confirm/' . $code) }}">Confirm Account</a></td></tr> {{-- $code is passed in from userRegister() method in UserController.php --}}
+            <tr><td><a href="{{ url('/user/confirm/' . $code) }}">@lang('public.confirm account')</a></td></tr> {{-- $code is passed in from userRegister() method in UserController.php --}}
             <tr><td>&nbsp;</td></tr>
             <tr><td>&nbsp;</td></tr>
-            <tr><td>Thanks & Regards,</td></tr>
+            <tr><td>@lang('public.Thanks & Regards,')</td></tr>
             <tr><td>Nobiarts</td></tr>
         </table>
 

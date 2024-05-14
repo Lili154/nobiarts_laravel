@@ -13,15 +13,15 @@
 
 
         <table>
-            <tr><td>Dear {{ $name }},</td></tr>
+            <tr><td>@lang('public.dear') {{ $name }},</td></tr>
             <tr><td>&nbsp;</td></tr>
-            <tr><td>You requested to change your password. New Password is as below:-</td></tr>
+            <tr><td>@lang('public.you requested to change your password. New Password is as below:')</td></tr>
             <tr><td>&nbsp;</td></tr>
-            <tr><td>Email: {{ $email }}</td></tr> {{-- $email is passed in from forgotPassword() method in UserController.php --}}
+            <tr><td>@lang('public.email'): {{ $email }}</td></tr> {{-- $email is passed in from forgotPassword() method in UserController.php --}}
             <tr><td>&nbsp;</td></tr>
-            <tr><td>Password: {{ $password }}</td></tr> {{-- $password is passed in from forgotPassword() method in UserController.php --}}
+            <tr><td>@lang('public.password'): {{ $password }}</td></tr> {{-- $password is passed in from forgotPassword() method in UserController.php --}}
             <tr><td>&nbsp;</td></tr>
-            <tr><td>Thanks & Regards,</td></tr>
+            <tr><td>@lang('public.Thanks & Regards,')</td></tr>
             <tr><td>Nobiarts</td></tr>
         </table>
 

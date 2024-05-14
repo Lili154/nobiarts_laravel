@@ -1,6 +1,6 @@
 {{-- This is the filters sidebar which is included by 'listing.blade.php' --}}
 @php
-    
+
     $productFilters = \App\Models\ProductsFilter::productFilters(); // Get all the (enabled/active) Filters
     // dd($productFilters);
 @endphp
@@ -11,21 +11,21 @@
 <div class="col-lg-3 col-md-3 col-sm-12">
     <!-- Fetch-Categories-from-Root-Category  -->
     <div class="fetch-categories">
-        <h3 class="title-name">Browse Categories</h3>
+        <h3 class="title-name">@lang('public.browse categories')</h3>
         <!-- Level 1 -->
         <h3 class="fetch-mark-category">
-            <a href="listing.html">T-Shirts
+            <a href="listing.html">@lang('public.T-Shirts')
                 <span class="total-fetch-items">(5)</span>
             </a>
         </h3>
         <ul>
             <li>
-                <a href="shop-v3-sub-sub-category.html">Casual T-Shirts
+                <a href="shop-v3-sub-sub-category.html">@lang('public.casual T-Shirts')
                     <span class="total-fetch-items">(3)</span>
                 </a>
             </li>
             <li>
-                <a href="listing.html">Formal T-Shirts
+                <a href="listing.html">@lang('public.formal T-Shirts')
                     <span class="total-fetch-items">(2)</span>
                 </a>
             </li>
@@ -33,7 +33,7 @@
         <!-- //end Level 1 -->
         <!-- Level 2 -->
         <h3 class="fetch-mark-category">
-            <a href="listing.html">Shirts
+            <a href="listing.html">@lang('public.shirts')
                 <span class="total-fetch-items">(5)</span>
             </a>
         </h3>
@@ -44,7 +44,7 @@
                 </a>
             </li>
             <li>
-                <a href="listing.html">Formal Shirts
+                <a href="listing.html">@lang('public.formal shirts')
                     <span class="total-fetch-items">(2)</span>
                 </a>
             </li>
@@ -55,13 +55,13 @@
 
 
 
-    {{-- If the Search Form is not used for searching in front/layout/header.blade.php. Note that Filters will be hidden and won't work in case of using the Search Form --}} 
+    {{-- If the Search Form is not used for searching in front/layout/header.blade.php. Note that Filters will be hidden and won't work in case of using the Search Form --}}
     @if (!isset($_REQUEST['search']))
 
         <!-- Filters -->
         <!-- Filter-Size -->
 
-        
+
         {{-- Size, price, color, brand, … are also Dynamic Filters, but won't be managed like the other Dynamic Filters, but we will manage every filter of them from the suitable respective database table, like the 'size' Filter from the `products_attributes` database table, 'color' Filter and `price` Filter from `products` table, 'brand' Filter from `brands` table --}}
         {{-- First: the 'size' filter (from `products_attributes` database table). Show the correct relevant product 'size' filter values (e.g. for the 'men' category (small, medium, large, XL, ...) BUT for the mobiles category (64GB-4GB, 128GB-6GB, ...)) depending on the URL --}}
         @php
@@ -71,13 +71,13 @@
 
 
         <div class="facet-filter-associates">
-            <h3 class="title-name">Size</h3>
+            <h3 class="title-name">@lang('public.size')</h3>
             <form class="facet-form" action="#" method="post">
                 <div class="associate-wrapper">
 
 
 
-                    
+
                     {{-- Size, price, color, brand, … are also Dynamic Filters, but won't be managed like the other Dynamic Filters, but we will manage every filter of them from the suitable respective database table, like the 'size' Filter from the `products_attributes` database table, 'color' Filter and `price` Filter from `products` table, 'brand' Filter from `brands` table --}}
                     {{-- First: the 'size' filter (from `products_attributes` database table). Show the correct relevant product 'size' filter values (e.g. for the 'men' category (small, medium, large, XL, ...) BUT for the mobiles category (64GB-4GB, 128GB-6GB, ...)) depending on the URL --}}
                     @foreach ($getSizes as $key => $size) {{-- show the correct relevant product 'size' filter values (e.g. for the 'men' category (small, medium, large, XL, ...) BUT for the mobiles category (64GB-4GB, 128GB-6GB, ...)) depending on the URL --}}
@@ -99,7 +99,7 @@
 
         <!-- Filter-Color -->
 
-        
+
         {{-- Size, price, color, brand, … are also Dynamic Filters, but won't be managed like the other Dynamic Filters, but we will manage every filter of them from the suitable respective database table, like the 'size' Filter from the `products_attributes` database table, 'color' Filter and `price` Filter from `products` table, 'brand' Filter from `brands` table --}}
         {{-- Second: the 'color' filter (from `products` database table). Show the correct relevant product 'color' filter values (e.g. for the 'men' category (red, blue, ...) BUT for the mobiles category (grey, black, ...)) depending on the URL --}}
         @php
@@ -107,13 +107,13 @@
             // dd($getColors);
         @endphp
         <div class="facet-filter-associates">
-            <h3 class="title-name">Color</h3>
+            <h3 class="title-name">@lang('public.color')</h3>
             <form class="facet-form" action="#" method="post">
                 <div class="associate-wrapper">
 
 
 
-                    
+
                     {{-- Size, price, color, brand, … are also Dynamic Filters, but won't be managed like the other Dynamic Filters, but we will manage every filter of them from the suitable respective database table, like the 'size' Filter from the `products_attributes` database table, 'color' Filter and `price` Filter from `products` table, 'brand' Filter from `brands` table --}}
                     {{-- Second: the 'color' filter (from `products` database table). Show the correct relevant product 'color' filter values (e.g. for the 'men' category (red, blue, ...) BUT for the mobiles category (grey, black, ...)) depending on the URL --}}
                     @foreach ($getColors as $key => $color) {{-- show the correct relevant product 'color' filter values (e.g. for the 'men' category (red, blue, ...) BUT for the mobiles category (grey, black, ...)) depending on the URL --}}
@@ -133,7 +133,7 @@
 
         <!-- Filter-Brand -->
 
-        
+
         {{-- Size, price, color, brand, … are also Dynamic Filters, but won't be managed like the other Dynamic Filters, but we will manage every filter of them from the suitable respective database table, like the 'size' Filter from the `products_attributes` database table, 'color' Filter and `price` Filter from `products` table, 'brand' Filter from `brands` table --}}
         {{-- Fourth: the 'brand' filter (from `products` and `brands` database table). Show the correct relevant product 'price' filter values (e.g. for the 'men' category (LC Waikiki, Concrete, ...) BUT for the mobiles category (iPhone, Xiaomi, ...)) depending on the URL --}}
         @php
@@ -147,7 +147,7 @@
 
 
 
-                    
+
                     {{-- Size, price, color, brand, … are also Dynamic Filters, but won't be managed like the other Dynamic Filters, but we will manage every filter of them from the suitable respective database table, like the 'size' Filter from the `products_attributes` database table, 'color' Filter and `price` Filter from `products` table, 'brand' Filter from `brands` table --}}
                     {{-- Fourth: the 'brand' filter (from `products` and `brands` database table). Show the correct relevant product 'price' filter values (e.g. for the 'men' category (LC Waikiki, Concrete, ...) BUT for the mobiles category (iPhone, Xiaomi, ...)) depending on the URL --}}
                     @foreach ($getBrands as $key => $brand) {{-- show the correct relevant product 'brand' filter values (e.g. for the 'men' category (LC Waikiki, Concrete, ...) BUT for the mobiles category (iPhone, Xiaomi, ...)) depending on the URL --}}
@@ -165,16 +165,17 @@
 
         <!-- Filter-Price -->
 
-        
+
         {{-- Size, price, color, brand, … are also Dynamic Filters, but won't be managed like the other Dynamic Filters, but we will manage every filter of them from the suitable respective database table, like the 'size' Filter from the `products_attributes` database table, 'color' Filter and `price` Filter from `products` table, 'brand' Filter from `brands` table --}}
         {{-- Third: the 'price' filter (from `products` database table). Show the correct relevant product 'price' filter values (e.g. for the 'men' category (red, blue, ...) BUT for the mobiles category (grey, black, ...)) depending on the URL --}}
         <div class="facet-filter-associates">
-            <h3 class="title-name">Price</h3>
+            <h3 class="title-name">@lang('public.price')
+            </h3>
             <form class="facet-form" action="#" method="post">
                 <div class="associate-wrapper">
 
 
-                    {{-- Third: the 'price' filter --}} 
+                    {{-- Third: the 'price' filter --}}
                     @php
                         // our desired array of price ranges
                         $prices = array('0-1000', '1000-2000', '2000-5000', '5000-10000', '10000-100000');
@@ -182,7 +183,7 @@
 
                     @foreach ($prices as $key => $price)
                         <input type="checkbox" class="check-box price" id="price{{ $key }}" name="price[]" value="{{ $price }}"> {{-- Note!!: PLEASE NOTE THE SQUARE BRACKETS [] OF THE "name" ATTRIBUTE!! --}} {{-- echo the $price as a 'CSS class' to be able to use it in jQuery for filtering --}} {{-- the checked checkboxes <input> fields of the price filter values (like '1000-2000', '2000-5000', ...) will be submitted as an ARRAY because we used SQUARE BRACKETS [] with the "name" HTML attribute in the checkbox <input> field in filters.blade.php, or else, AJAX is used to send the <input> values WITHOUT submitting the <form> at all --}}
-                        <label class="label-text" for="price{{ $key }}">EGP {{ $price }}
+                        <label class="label-text" for="price{{ $key }}">{{ session("currency") }} {{ $price }}
                         </label>
                     @endforeach
                 </div>
@@ -192,7 +193,7 @@
 
 
 
-        
+
         {{-- Dynamic Filters --}}
         <!-- Filter -->
         @foreach ($productFilters as $filter) {{-- $productFilters comes from the far top of this file --}}

@@ -56,10 +56,10 @@
                 <ul class="bread-crumb">
                     <li class="has-separator">
                         <i class="ion ion-md-home"></i>
-                        <a href="{{ url('/') }}">Home</a>
+                        <a href="{{ url('/') }}">@lang('public.home')</a>
                     </li>
                     <li class="is-marked">
-                        <a href="javascript:;">Detail</a>
+                        <a href="javascript:;">@lang('public.detail')</a>
                     </li>
                 </ul>
             </div>
@@ -112,7 +112,7 @@
                         {{-- Determining If An Item Exists In The Session (using has() method): https://laravel.com/docs/9.x/session#determining-if-an-item-exists-in-the-session --}}
                         @if (Session::has('error_message')) <!-- Check AdminController.php, updateAdminPassword() method -->
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <strong>Error:</strong> {{ Session::get('error_message') }}
+                                <strong>@lang('public.error:')</strong> {{ Session::get('error_message') }}
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
@@ -140,7 +140,7 @@
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
 
 
-                                <strong>Success:</strong> @php echo Session::get('success_message') @endphp
+                                <strong>@lang('public.success:')</strong> @php echo Session::get('success_message') @endphp
 
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -162,7 +162,7 @@
                             {{-- Breadcrumb --}}
                             <ul class="bread-crumb">
                                 <li class="has-separator">
-                                    <a href="{{ url('/') }}">Home</a> {{-- Home --}}
+                                    <a href="{{ url('/') }}">@lang('public.home')</a> {{-- Home --}}
                                 </li>
                                 <li class="has-separator">
                                     <a href="javascript:;">{{ $productDetails['section']['name'] }}</a> {{-- Section Name --}}
@@ -196,7 +196,7 @@
                             </div>
                         </div>
                         <div class="section-2-short-description u-s-p-y-14">
-                            <h6 class="information-heading u-s-m-b-8">Description:</h6>
+                            <h6 class="information-heading u-s-m-b-8">@lang('public.description:')</h6>
                             <p>{{ $productDetails['description'] }}</p>
                         </div>
                         <div class="section-3-price-original-discount u-s-p-y-14">
@@ -204,7 +204,7 @@
 
                             @php
                             // Retrieve the exchange rate from the session
-                            $exchangeRate = session('exchange_rate', 1); // Default exchange rate is 1
+                            $exchangeRate = session('exchange_rate'); // Default exchange rate is 1
 
                             // Convert product price to the selected currency
                             $convertedPrice = $productDetails['product_price'] * $exchangeRate;
@@ -214,14 +214,14 @@
                             $convertedDiscountPrice = $getDiscountPrice > 0 ? $getDiscountPrice * $exchangeRate : 0;
                         @endphp
 
-                            <span class="getAttributePrice">{{-- this <span> will be used by jQuery for getting the respective `price` and `stock` depending on the selected `size` in the <select> box (through the AJAX call). Check front/js/custom.js --}}
+                            <span class="getAttributePrice ">{{-- this <span> will be used by jQuery for getting the respective `price` and `stock` depending on the selected `size` in the <select> box (through the AJAX call). Check front/js/custom.js --}}
 
                                 @if ($getDiscountPrice > 0)
                                     <div class="price">
                                         <h4>{{ session('currency') }}{{ $convertedDiscountPrice }}</h4>
                                     </div>
                                     <div class="original-price">
-                                        <span>Original Price:</span>
+                                        <span>@lang('public.original price:')</span>
                                         <h4>{{ session('currency') }}{{ $convertedPrice }}</h4>
 
                                     </div>
@@ -238,23 +238,23 @@
 
                         </div>
                         <div class="section-4-sku-information u-s-p-y-14">
-                            <h6 class="information-heading u-s-m-b-8">Sku Information:</h6>
+                            <h6 class="information-heading u-s-m-b-8">@lang('public.sku information:')</h6>
                             <div class="left">
-                                <span>Product Code:</span>
+                                <span>@lang('public.product code'):</span>
                                 <span>{{ $productDetails['product_code'] }}</span>
                             </div>
                             <div class="left">
-                                <span>Product Color:</span>
+                                <span>@lang('public.product color'):</span>
                                 <span>{{ $productDetails['product_color'] }}</span>
                             </div>
                             <div class="availability">
-                                <span>Availability:</span>
+                                <span>@lang('public.availability:')</span>
 
 
                                 @if ($totalStock > 0)
-                                    <span>In Stock</span>
+                                    <span>@lang('public.in stock')</span>
                                 @else
-                                    <span style="color: red">Out of Stock (Sold-out)</span>
+                                    <span style="color: red">@lang('public.out of stock (Sold-out)')</span>
                                 @endif
 
 
@@ -265,8 +265,8 @@
 
                             @if ($totalStock > 0)
                                 <div class="left">
-                                    <span>Only:</span>
-                                    <span>{{ $totalStock }} left</span>
+                                    <span>@lang('public.only:')</span>
+                                    <span>{{ $totalStock }} @lang('public.left')</span>
                                 </div>
                             @endif
 
@@ -303,7 +303,7 @@
                                 {{-- Managing Product Colors (using the `group_code` column in `products` table) --}}
                                 @if (count($groupProducts) > 0) {{-- if there's a value for the `group_code` column (in `products` table) for the currently viewed product --}}
                                     <div>
-                                        <div><strong>Product Colors</strong></div>
+                                        <div><strong>@lang('public.product colors')</strong></div>
                                         <div style="margin-top: 10px">
                                             @foreach ($groupProducts as $product)
                                                 <a href="{{ url('product/' . $product['id']) }}">
@@ -317,13 +317,13 @@
 
 
                                 <div class="sizes u-s-m-b-11" style="margin-top: 20px">
-                                    <span>Available Size:</span>
+                                    <span>@lang('public.available size:')</span>
                                     <div class="size-variant select-box-wrapper">
                                         <select class="select-box product-size" id="getPrice" product-id="{{ $productDetails['id'] }}" name="size" required> {{-- Check front/js/custom.js file --}}
 
 
 
-                                            <option value="">Select Size</option>
+                                            <option value="">@lang('public.select size')</option>
                                             @foreach ($productDetails['attributes'] as $attribute)
                                                 <option value="{{ $attribute['size'] }}">{{ $attribute['size'] }}</option>
                                             @endforeach
@@ -338,13 +338,13 @@
 
 
                                 <div class="quantity-wrapper u-s-m-b-22">
-                                    <span>Quantity:</span>
+                                    <span>@lang('public.quantity:')</span>
                                     <div class="quantity">
                                         <input class="quantity-text-field" type="number" name="quantity" value="1">
                                     </div>
                                 </div>
                                 <div>
-                                    <button class="button button-outline-secondary" type="submit">Add to cart</button>
+                                    <button class="button button-outline-secondary" type="submit">@lang('public.add to cart')</button>
                                     <button class="button button-outline-secondary far fa-heart u-s-m-l-6"></button>
                                     <button class="button button-outline-secondary far fa-envelope u-s-m-l-6"></button>
                                 </div>
@@ -356,9 +356,9 @@
 
 
 
-                        <br><br><b>Delivery</b>
-                        <input type="text" id="pincode" placeholder="Check Pincode" required>
-                        <button type="button" id="checkPincode">Go</button>
+                        <br><br><b>@lang('public.delivery')</b>
+                        <input type="text" id="pincode" placeholder="@lang('public.Check Pincode')" required>
+                        <button type="button" id="checkPincode">@lang('public.go')</button>
 
 
                     </div>
@@ -373,14 +373,14 @@
                         <div class="detail-nav-wrapper u-s-m-b-30">
                             <ul class="nav single-product-nav justify-content-center">
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#video">Product Video</a>
+                                    <a class="nav-link active" data-toggle="tab" href="#video">@lang('public.product video')</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#detail">Product Details</a>
+                                    <a class="nav-link" data-toggle="tab" href="#detail">@lang('public.product details')</a>
                                 </li>
                                 <li class="nav-item">
                                     {{-- <a class="nav-link" data-toggle="tab" href="#review">Reviews (15)</a> --}}
-                                    <a class="nav-link" data-toggle="tab" href="#review">Reviews {{ count($ratings) }}</a>
+                                    <a class="nav-link" data-toggle="tab" href="#review">@lang('public.reviews') {{ count($ratings) }}</a>
                                 </li>
                             </ul>
                         </div>
@@ -396,7 +396,7 @@
                                             <source src="{{ url('front/videos/product_videos/' . $productDetails['product_video']) }}" type="video/mp4">
                                         </video>
                                     @else
-                                        Product Video does not exist
+                                        @lang('public.product Video does not exist')
                                     @endif
 
 
@@ -408,7 +408,7 @@
                             <div class="tab-pane fade" id="detail">
                                 <div class="specification-whole-container">
                                     <div class="spec-table u-s-m-b-50">
-                                        <h4 class="spec-heading">Product Details</h4>
+                                        <h4 class="spec-heading">@lang('public.product colors')</h4>
                                         <table>
 
 
@@ -468,45 +468,45 @@
                                     <div class="row r-1 u-s-m-b-26 u-s-p-b-22">
                                         <div class="col-lg-6 col-md-6">
                                             <div class="total-score-wrapper">
-                                                <h6 class="review-h6">Average Rating</h6>
+                                                <h6 class="review-h6">@lang('public.average raiting')</h6>
                                                 <div class="circle-wrapper">
                                                     <h1>{{ $avgRating }}</h1>
                                                 </div>
-                                                <h6 class="review-h6">Based on {{ count($ratings) }} Reviews</h6>
+                                                <h6 class="review-h6">@lang('public.based on') {{ count($ratings) }} @lang('public.reviews')</h6>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6">
                                             <div class="total-star-meter">
                                                 <div class="star-wrapper">
-                                                    <span>5 Stars</span>
+                                                    <span>5 @lang('public.stars')</span>
                                                     <div class="star">
                                                         <span style='width:0'></span>
                                                     </div>
                                                     <span>({{ $ratingFiveStarCount }})</span>
                                                 </div>
                                                 <div class="star-wrapper">
-                                                    <span>4 Stars</span>
+                                                    <span>4 @lang('public.stars')</span>
                                                     <div class="star">
                                                         <span style='width:0'></span>
                                                     </div>
                                                     <span>({{ $ratingFourStarCount }})</span>
                                                 </div>
                                                 <div class="star-wrapper">
-                                                    <span>3 Stars</span>
+                                                    <span>3 @lang('public.stars')</span>
                                                     <div class="star">
                                                         <span style='width:0'></span>
                                                     </div>
                                                     <span>({{ $ratingThreeStarCount }})</span>
                                                 </div>
                                                 <div class="star-wrapper">
-                                                    <span>2 Stars</span>
+                                                    <span>2 @lang('public.stars')</span>
                                                     <div class="star">
                                                         <span style='width:0'></span>
                                                     </div>
                                                     <span>({{ $ratingTwoStarCount }})</span>
                                                 </div>
                                                 <div class="star-wrapper">
-                                                    <span>1 Star</span>
+                                                    <span>1 @lang('public.star')</span>
                                                     <div class="star">
                                                         <span style='width:0'></span>
                                                     </div>
@@ -525,33 +525,33 @@
 
                                                 <input type="hidden" name="product_id" value="{{ $productDetails['id'] }}">
                                                 <div class="your-rating-wrapper">
-                                                    <h6 class="review-h6">Your Review matters.</h6>
-                                                    <h6 class="review-h6">Have you used this product before?</h6>
+                                                    <h6 class="review-h6">@lang('public.your review matters.')</h6>
+                                                    <h6 class="review-h6">@lang('public.have you used this product before?')</h6>
                                                     <div class="star-wrapper u-s-m-b-8">
 
 
                                                         {{-- Star Rating (of a Product) (in the "Reviews" tab). --}}
                                                         <div class="rate">
                                                             <input style="display: none" type="radio" id="star5" name="rating" value="5" />
-                                                            <label for="star5" title="text">5 stars</label>
+                                                            <label for="star5" title="text">5 @lang('public.stars')</label>
 
                                                             <input style="display: none" type="radio" id="star4" name="rating" value="4" />
-                                                            <label for="star4" title="text">4 stars</label>
+                                                            <label for="star4" title="text">4 @lang('public.stars')</label>
 
                                                             <input style="display: none" type="radio" id="star3" name="rating" value="3" />
-                                                            <label for="star3" title="text">3 stars</label>
+                                                            <label for="star3" title="text">3 @lang('public.stars')</label>
 
                                                             <input style="display: none" type="radio" id="star2" name="rating" value="2" />
-                                                            <label for="star2" title="text">2 stars</label>
+                                                            <label for="star2" title="text">2 @lang('public.stars')</label>
 
                                                             <input style="display: none" type="radio" id="star1" name="rating" value="1" />
-                                                            <label for="star1" title="text">1 star</label>
+                                                            <label for="star1" title="text">1 @lang('public.star')</label>
                                                         </div>
 
 
                                                     </div>
                                                         <textarea class="text-area u-s-m-b-8" id="review-text-area" placeholder="Your Review" name="review" required></textarea>
-                                                        <button class="button button-outline-secondary">Submit Review</button>
+                                                        <button class="button button-outline-secondary">@lang('public.submit review')</button>
                                                     {{-- </form> --}}
                                                 </div>
                                             </form>
@@ -564,7 +564,7 @@
                                         <!-- Review-Options -->
                                         <div class="review-options u-s-m-b-16">
                                             <div class="review-option-heading">
-                                                <h6>Reviews
+                                                <h6>@lang('public.reviews')
                                                     <span> ({{ count($ratings) }}) </span>
                                                 </h6>
                                             </div>
@@ -631,7 +631,7 @@
                 <section class="section-maker">
                     <div class="container">
                         <div class="sec-maker-header text-center">
-                            <h3 class="sec-maker-h3">Similar Products</h3>
+                            <h3 class="sec-maker-h3">@lang('public.similar products')</h3>
                         </div>
                         <div class="slider-fouc">
                             <div class="products-slider owl-carousel" data-item="4">
@@ -660,10 +660,10 @@
 
                                             </a>
                                             <div class="item-action-behaviors">
-                                                <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
-                                                <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                                <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                                <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
+                                                <a class="item-quick-look" data-toggle="modal" href="#quick-view">@lang('public.quick look')</a>
+                                                <a class="item-mail" href="javascript:void(0)">@lang('public.email')</a>
+                                                <a class="item-addwishlist" href="javascript:void(0)">@lang('public.add to wishlist')</a>
+                                                <a class="item-addCart" href="javascript:void(0)">@lang('public.add to cart')</a>
                                             </div>
                                         </div>
                                         <div class="item-content">
@@ -701,16 +701,16 @@
                                             @if ($getDiscountPrice > 0) {{-- If there's a discount on the price, show the price before (the original price) and after (the new price) the discount --}}
                                                 <div class="price-template">
                                                     <div class="item-new-price">
-                                                        EGP{{ $getDiscountPrice }}
+                                                        {{ session('currency') }}{{ $getDiscountPrice }}
                                                     </div>
                                                     <div class="item-old-price">
-                                                        EGP{{ $product['product_price'] }}
+                                                        {{ session('currency') }}{{ $product['product_price'] }}
                                                     </div>
                                                 </div>
                                             @else {{-- if there's no discount on the price, show the original price --}}
                                                 <div class="price-template">
                                                     <div class="item-new-price">
-                                                        EGP{{ $product['product_price'] }}
+                                                        {{ session('currency') }}{{ $product['product_price'] }}
                                                     </div>
                                                 </div>
                                             @endif
@@ -719,7 +719,7 @@
 
                                         </div>
                                         <div class="tag new">
-                                            <span>NEW</span>
+                                            <span>@lang('public.new')</span>
                                         </div>
                                     </div>
                                 @endforeach
@@ -735,7 +735,7 @@
                 <section class="section-maker">
                     <div class="container">
                         <div class="sec-maker-header text-center">
-                            <h3 class="sec-maker-h3">Recently Viewed Products</h3>
+                            <h3 class="sec-maker-h3">@lang('public.recently viewed products')</h3>
                         </div>
                         <div class="slider-fouc">
                             <div class="products-slider owl-carousel" data-item="4">
@@ -765,10 +765,10 @@
 
                                             </a>
                                             <div class="item-action-behaviors">
-                                                <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
-                                                <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                                <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                                <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
+                                                <a class="item-quick-look" data-toggle="modal" href="#quick-view">@lang('public.quick look')</a>
+                                                <a class="item-mail" href="javascript:void(0)">@lang('public.email')</a>
+                                                <a class="item-addwishlist" href="javascript:void(0)">@lang('public.add to wishlist')</a>
+                                                <a class="item-addCart" href="javascript:void(0)">@lang('public.add to cart')</a>
                                             </div>
                                         </div>
                                         <div class="item-content">
@@ -805,16 +805,16 @@
                                             @if ($getDiscountPrice > 0) {{-- If there's a discount on the price, show the price before (the original price) and after (the new price) the discount --}}
                                                 <div class="price-template">
                                                     <div class="item-new-price">
-                                                        EGP{{ $getDiscountPrice }}
+                                                        {{ session('currency') }}{{ $getDiscountPrice }}
                                                     </div>
                                                     <div class="item-old-price">
-                                                        EGP{{ $product['product_price'] }}
+                                                        {{ session('currency') }}{{ $product['product_price'] }}
                                                     </div>
                                                 </div>
                                             @else {{-- if there's no discount on the price, show the original price --}}
                                                 <div class="price-template">
                                                     <div class="item-new-price">
-                                                        EGP{{ $product['product_price'] }}
+                                                        {{ session('currency') }}{{ $product['product_price'] }}
                                                     </div>
                                                 </div>
                                             @endif
@@ -823,7 +823,7 @@
 
                                         </div>
                                         <div class="tag new">
-                                            <span>NEW</span>
+                                            <span>@lang('public.new')</span>
                                         </div>
                                     </div>
                                 @endforeach

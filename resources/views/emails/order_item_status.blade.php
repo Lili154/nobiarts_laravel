@@ -13,30 +13,30 @@
             <tr><td>&nbsp;</td></tr>
             <tr><td><img src="{{ asset('front/images/main-logo/main-logo.png') }}"></td></tr>
             <tr><td>&nbsp;</td></tr>
-            <tr><td>Hello {{ $name }}</td></tr>
+            <tr><td>@lang('public.hello') {{ $name }}</td></tr>
             <tr><td>&nbsp;<br></td></tr>
-            <tr><td>Your Order #{{ $order_id }} Item status has been updated to {{ $order_status }}</td></tr>
+            <tr><td>@lang('public.your order') #{{ $order_id }} @lang('public.item status has been updated to') {{ $order_status }}</td></tr>
             <tr><td>&nbsp;</td></tr>
 
 
             @if (!empty($courier_name) && !empty($tracking_number))
                 <tr>
-                    <td>Courier Name is {{ $courier_name }} and Tracking Number is {{ $tracking_number }}</td>
+                    <td>@lang('public.courier name is') {{ $courier_name }} @lang('public.and Tracking Number is') {{ $tracking_number }}</td>
                 </tr>
                 <tr><td>&nbsp;</td></tr>
             @endif
 
-            <tr><td>Your Order Item details are as below:</td></tr>
+            <tr><td>@lang('public.Your Order Item details are as below:')</td></tr>
             <tr><td>&nbsp;</td></tr>
             <tr><td>
                 <table style="width: 95%" cellpadding="5" cellspacing="5" bgcolor="#f7f4f4">
                     <tr bgcolor="#cccccc">
-                        <td>Product Name</td>
-                        <td>Product Code</td>
-                        <td>Product Size</td>
-                        <td>Product Color</td>
-                        <td>Product Quantity</td>
-                        <td>Product Price</td>
+                        <td>@lang('public.product name')</td>
+                        <td>@lang('public.product code')</td>
+                        <td>@lang('public.product size')</td>
+                        <td>@lang('public.product color')</td>
+                        <td>@lang('public.product quantity')</td>
+                        <td>@lang('public.product price')</td>
                     </tr>
                     @foreach ($orderDetails['orders_products'] as $order)
                         <tr bgcolor="#f9f9f9">
@@ -54,7 +54,7 @@
             <tr><td>
                 <table>
                     <tr>
-                        <td><strong>Delivery Address:</strong></td>
+                        <td><strong>@lang('public.delivery address'):</strong></td>
                     </tr>
                     <tr>
                         <td>{{ $orderDetails['name'] }}</td>
@@ -80,9 +80,9 @@
                 </table>
             </td></tr>
             <tr><td>&nbsp;</td></tr>
-            <tr><td>For any queries, you can contact us at <a href="mailto:info@nobiarts.com">info@nobiarts.com</a></td></tr>
+            <tr><td>@lang('public.for any queries, you can contact us at') <a href="mailto:info@nobiarts.com">info@nobiarts.com</a></td></tr>
             <tr><td>&nbsp;</td></tr>
-            <tr><td>Regards,<br>Team Nobiarts</td></tr>
+            <tr><td>@lang('public.regards,')<br>@lang('public.team') Nobiarts</td></tr>
             <tr><td>&nbsp;</td></tr>
         </table>
     </body>

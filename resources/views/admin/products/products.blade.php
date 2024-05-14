@@ -8,19 +8,19 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Products</h4>
+                            <h4 class="card-title">@lang('public.products')</h4>
 
 
 
-                            
-                            <a href="{{ url('admin/add-edit-product') }}" style="max-width: 150px; float: right; display: inline-block" class="btn btn-block btn-primary">Add Product</a>
+
+                            <a href="{{ url('admin/add-edit-product') }}" style="max-width: 150px; float: right; display: inline-block" class="btn btn-block btn-primary">@lang('public.add product')</a>
 
                             {{-- Displaying The Validation Errors: https://laravel.com/docs/9.x/validation#quick-displaying-the-validation-errors AND https://laravel.com/docs/9.x/blade#validation-errors --}}
                             {{-- Determining If An Item Exists In The Session (using has() method): https://laravel.com/docs/9.x/session#determining-if-an-item-exists-in-the-session --}}
                             {{-- Our Bootstrap success message in case of updating admin password is successful: --}}
                             @if (Session::has('success_message')) <!-- Check AdminController.php, updateAdminPassword() method -->
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    <strong>Success:</strong> {{ Session::get('success_message') }}
+                                    <strong>@lang('public.success:')</strong> {{ Session::get('success_message') }}
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                     </button>
@@ -34,15 +34,15 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Product Name</th>
-                                            <th>Product Code</th>
-                                            <th>Product Color</th>
-                                            <th>Product Image</th>
-                                            <th>Category</th> {{-- Through the relationship --}}
-                                            <th>Section</th>  {{-- Through the relationship --}}
-                                            <th>Added by</th> {{-- Through the relationship --}}
-                                            <th>Status</th>
-                                            <th>Actions</th>
+                                            <th>@lang('public.product name')</th>
+                                            <th>@lang('public.product code')</th>
+                                            <th>@lang('public.product color')</th>
+                                            <th>@lang('public.product image')</th>
+                                            <th>@lang('public.category')</th> {{-- Through the relationship --}}
+                                            <th>@lang('public.section')</th>  {{-- Through the relationship --}}
+                                            <th>@lang('public.added by')</th> {{-- Through the relationship --}}
+                                            <th>@lang('public.status')</th>
+                                            <th>@lang('public.actions')</th>
                                         </tr>
                                     </thead>
                                     <tbody>

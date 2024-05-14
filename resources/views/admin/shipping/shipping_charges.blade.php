@@ -9,8 +9,8 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Shipping Charges</h4>
-                            
+                            <h4 class="card-title">@lang('public.shipping charges')</h4>
+
 
 
                             {{-- Displaying The Validation Errors: https://laravel.com/docs/9.x/validation#quick-displaying-the-validation-errors AND https://laravel.com/docs/9.x/blade#validation-errors --}}
@@ -18,7 +18,7 @@
                             {{-- Our Bootstrap success message in case of updating admin password is successful: --}}
                             @if (Session::has('success_message')) <!-- Check AdminController.php, updateAdminPassword() method -->
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    <strong>Success:</strong> {{ Session::get('success_message') }}
+                                    <strong>@lang('public.success:')</strong> {{ Session::get('success_message') }}
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                     </button>
@@ -32,14 +32,14 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Country</th>
-                                            <th>Rate (0g to 500g)</th>
-                                            <th>Rate (501g to 1000g)</th>
-                                            <th>Rate (1001g to 2000g)</th>
-                                            <th>Rate (2001g to 5000g)</th>
-                                            <th>Rate (Above 5000g)</th>
-                                            <th>Status</th>
-                                            <th>Actions</th>
+                                            <th>@lang('public.country')</th>
+                                            <th>@lang('public.rate (0-500g)')</th>
+                                            <th>@lang('public.rate (501g-1000g)')</th>
+                                            <th>@lang('public.rate (1001g-2000g)')</th>
+                                            <th>@lang('public.rate (2001g-5000g)')</th>
+                                            <th>@lang('public.rate (Above 5000g)')</th>
+                                            <th>@lang('public.status')</th>
+                                            <th>@lang('public.actions')</th>
                                         </tr>
                                     </thead>
                                     <tbody>

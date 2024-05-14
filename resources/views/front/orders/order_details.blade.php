@@ -10,14 +10,14 @@
     <div class="page-style-a">
         <div class="container">
             <div class="page-intro">
-                <h2>Order #{{ $orderDetails['id'] }} Details</h2>
+                <h2>@lang('public.order') #{{ $orderDetails['id'] }} @lang('public.details')</h2>
                 <ul class="bread-crumb">
                     <li class="has-separator">
                         <i class="ion ion-md-home"></i>
-                        <a href="index.html">Home</a>
+                        <a href="/">@lang('public.home')</a>
                     </li>
                     <li class="is-marked">
-                        <a href="{{ url('user/orders') }}">Orders</a>
+                        <a href="{{ url('user/orders') }}">@lang('public.orders')</a>
                     </li>
                 </ul>
             </div>
@@ -33,51 +33,51 @@
                 <table class="table table-striped table-borderless">
                     <tr class="table-danger">
                         <td colspan="2">
-                            <strong>Order Details</strong>
+                            <strong>@lang('public.order details')</strong>
                         </td>
                     </tr>
                     <tr>
-                        <td>Order Date</td>
+                        <td>@lang('public.order date')</td>
                         <td>{{ date('Y-m-d h:i:s', strtotime($orderDetails['created_at'])) }}</td>
                     </tr>
                     <tr>
-                        <td>Order Status</td>
+                        <td>@lang('public.order status')</td>
                         <td>{{ $orderDetails['order_status'] }}</td>
                     </tr>
                     <tr>
-                        <td>Order Total</td>
-                        <td>EGP{{ $orderDetails['grand_total'] }}</td>
+                        <td>@lang('public.order total')</td>
+                        <td>{{ session("currency") }}{{ $orderDetails['grand_total'] }}</td>
                     </tr>
                     <tr>
-                        <td>Shipping Charges</td>
-                        <td>EGP{{ $orderDetails['shipping_charges'] }}</td>
+                        <td>@lang('public.shipping charges')</td>
+                        <td>{{ session("currency") }}{{ $orderDetails['shipping_charges'] }}</td>
                     </tr>
 
                     @if ($orderDetails['coupon_code'] != '')
                         <tr>
-                            <td>Coupon Code</td>
+                            <td>@lang('public.coupon code')</td>
                             <td>{{ $orderDetails['coupon_code'] }}</td>
                         </tr>
                         <tr>
-                            <td>Coupon Amount</td>
-                            <td>EGP{{ $orderDetails['coupon_amount'] }}</td>
+                            <td>@lang('public.coupon amount')</td>
+                            <td>{{ session("currency") }}{{ $orderDetails['coupon_amount'] }}</td>
                         </tr>
                     @endif
 
-                    
+
                     @if ($orderDetails['courier_name'] != '')
                         <tr>
-                            <td>Courier Name</td>
+                            <td>@lang('public.courier name')</td>
                             <td>{{ $orderDetails['courier_name'] }}</td>
                         </tr>
                         <tr>
-                            <td>Tracking Number</td>
+                            <td>@lang('public.tracking number')</td>
                             <td>{{ $orderDetails['tracking_number'] }}</td>
                         </tr>
                     @endif
 
                     <tr>
-                        <td>Payment Method</td>
+                        <td>@lang('public.payment method')</td>
                         <td>{{ $orderDetails['payment_method'] }}</td>
                     </tr>
                 </table>
@@ -85,12 +85,12 @@
                 {{-- Order products info table --}}
                 <table class="table table-striped table-borderless">
                     <tr class="table-danger">
-                        <th>Product Image</th>
-                        <th>Product Code</th>
-                        <th>Product Name</th>
-                        <th>Product Size</th>
-                        <th>Product Color</th>
-                        <th>Product Qty</th>
+                        <th>@lang('public.product image')</th>
+                        <th>@lang('public.product code')</th>
+                        <th>@lang('public.product name')</th>
+                        <th>@lang('public.product size')</th>
+                        <th>@lang('public.product color')</th>
+                        <th>@lang('public.product qty')</th>
                     </tr>
 
                     @foreach ($orderDetails['orders_products'] as $product)
@@ -110,10 +110,10 @@
                             <td>{{ $product['product_qty'] }}</td>
                         </tr>
 
-                        
+
                         @if ($product['courier_name'] != '')
                             <tr>
-                                <td colspan="6">Courier Name: {{ $product['courier_name'] }}, Tracking Number: {{ $product['tracking_number'] }}</td>
+                                <td colspan="6">@lang('public.courier name'): {{ $product['courier_name'] }}, @lang('public.tracking number'): {{ $product['tracking_number'] }}</td>
                             </tr>
                         @endif
 
@@ -124,35 +124,35 @@
                 <table class="table table-striped table-borderless">
                     <tr class="table-danger">
                         <td colspan="2">
-                            <strong>Delivery Address</strong>
+                            <strong>@lang('public.delivery address')</strong>
                         </td>
                     </tr>
                     <tr>
-                        <td>Name</td>
+                        <td>@lang('public.name')</td>
                         <td>{{ $orderDetails['name'] }}</td>
                     </tr>
                     <tr>
-                        <td>Address</td>
+                        <td>@lang('public.address')</td>
                         <td>{{ $orderDetails['address'] }}</td>
                     </tr>
                     <tr>
-                        <td>City</td>
+                        <td>@lang('public.city')</td>
                         <td>{{ $orderDetails['city'] }}</td>
                     </tr>
                     <tr>
-                        <td>State</td>
+                        <td>@lang('public.state')</td>
                         <td>{{ $orderDetails['state'] }}</td>
                     </tr>
                     <tr>
-                        <td>Country</td>
+                        <td>@lang('public.country')</td>
                         <td>{{ $orderDetails['country'] }}</td>
                     </tr>
                     <tr>
-                        <td>Pincode</td>
+                        <td>@lang('public.pincode')</td>
                         <td>{{ $orderDetails['pincode'] }}</td>
                     </tr>
                     <tr>
-                        <td>Mobile</td>
+                        <td>@lang('public.mobile')</td>
                         <td>{{ $orderDetails['mobile'] }}</td>
                     </tr>
                 </table>

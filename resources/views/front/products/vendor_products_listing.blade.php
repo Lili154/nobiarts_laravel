@@ -1,4 +1,4 @@
-{{-- Show all Vendor products --}} {{-- This file is 'iclude'-ed in front/products/vendor_listing.blade.php --}} 
+{{-- Show all Vendor products --}} {{-- This file is 'iclude'-ed in front/products/vendor_listing.blade.php --}}
 
 
 <!-- Row-of-Product-Container -->
@@ -29,10 +29,10 @@
 
                     </a>
                     <div class="item-action-behaviors">
-                        <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
-                        <a class="item-mail" href="javascript:void(0)">Mail</a>
-                        <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                        <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
+                        <a class="item-quick-look" data-toggle="modal" href="#quick-view">@lang('public.quick look')</a>
+                        <a class="item-mail" href="javascript:void(0)">@lang('public.email')</a>
+                        <a class="item-addwishlist" href="javascript:void(0)">@lang('public.add to wishlist')</a>
+                        <a class="item-addCart" href="javascript:void(0)">@lang('public.add to cart')</a>
                     </div>
                 </div>
                 <div class="item-content">
@@ -67,7 +67,7 @@
                     @if ($getDiscountPrice > 0) {{-- If there's a discount on the price, show the price before (the original price) and after (the new price) the discount --}}
                         <div class="price-template">
                             <div class="item-new-price">
-                                Rs . {{ $getDiscountPrice }} 
+                                Rs . {{ $getDiscountPrice }}
                             </div>
                             <div class="item-old-price">
                                 Rs . {{ $product['product_price'] }}
@@ -87,18 +87,18 @@
 
 
 
-                
+
                 @php
                     $isProductNew = \App\Models\Product::isProductNew($product['id'])
                 @endphp
                 @if ($isProductNew == 'Yes')
                     <div class="tag new">
-                        <span>NEW</span>
+                        <span>@lang('public.new')</span>
                     </div>
                 @endif
 
 
-                
+
             </div>
         </div>
     @endforeach

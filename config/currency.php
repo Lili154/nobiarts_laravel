@@ -2,7 +2,7 @@
 
 return [
     'available_currencies' => [
-        'USD',
+        'RUB',
         'EUR',
         'LEV',
         'AMD',

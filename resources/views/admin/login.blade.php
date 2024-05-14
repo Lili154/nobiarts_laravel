@@ -24,25 +24,25 @@
                     <div class="row w-100 mx-0">
                         <div class="col-lg-4 mx-auto">
                             <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-                                <h4>Hello! let's get started</h4>
-                                <h6 class="font-weight-light">Sign in to continue.</h6>
+                                <h4>@lang("public.hello! let's get started")</h4>
+                                <h6 class="font-weight-light">@lang('public.sign in to continue.')</h6>
 
 
                                 {{-- Our Bootstrap error code in case of wrong credentials when logging in: --}}
                                 {{-- Determining If An Item Exists In The Session (using has() method): https://laravel.com/docs/9.x/session#determining-if-an-item-exists-in-the-session --}}
                                 @if (Session::has('error_message')) <!-- Check AdminController.php, login() method -->
                                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        <strong>Error:</strong> {{ Session::get('error_message') }}
+                                        <strong>@lang('public.error:')</strong> {{ Session::get('error_message') }}
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                 @endif
-                                
-                                {{-- Displaying Laravel Validation Errors: https://laravel.com/docs/9.x/validation#quick-displaying-the-validation-errors --}}    
+
+                                {{-- Displaying Laravel Validation Errors: https://laravel.com/docs/9.x/validation#quick-displaying-the-validation-errors --}}
                                 @if ($errors->any())
                                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
-    
+
 
                                         @foreach ($errors->all() as $error)
                                             <li>{{ $error }}</li>
@@ -61,22 +61,22 @@
 
 
                                     <div class="form-group">
-                                        <input type="email" name="email" id="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username" required>
+                                        <input type="email" name="email" id="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="@lang('public.user name')" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="password" id="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password" required>
+                                        <input type="password" name="password" id="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="@lang('public.password')" required>
                                     </div>
                                     <div class="mt-3">
-                                        
+
                                         {{-- My code: --}}
-                                        <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN IN</button>
+                                        <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">@lang('public.sign in')</button>
 
                                     </div>
                                     <div class="my-2 d-flex justify-content-between align-items-center">
                                         <div class="form-check">
                                             <label class="form-check-label text-muted">
                                             <input type="checkbox" class="form-check-input">
-                                            Keep me signed in
+                                            @lang('public.keep me signed in')
                                             </label>
                                         </div>
                                     </div>

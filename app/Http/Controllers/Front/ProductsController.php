@@ -139,9 +139,9 @@ class ProductsController extends Controller
                     $search_product = $_REQUEST['search'];
 
                     // We fill in the $categoryDetails array MANUALLY with the same indexes/keys that come from the categoryDetails() method in Category.php model (because in either cases of the if-else statement, we pass in $categoryDetails variable to the view down below)
-                    $categoryDetails['breadcrumbs']                      = 'New Arrival Products';
-                    $categoryDetails['categoryDetails']['category_name'] = 'New Arrival Products';
-                    $categoryDetails['categoryDetails']['description']   = 'New Arrival Products';
+                    $categoryDetails['breadcrumbs']                      = __('public.new arrival products');
+                    $categoryDetails['categoryDetails']['category_name'] = __('public.new arrival products');
+                    $categoryDetails['categoryDetails']['description']   = __('public.new arrival products');
 
                     // We join `products` table (at the `category_id` column) with `categoreis` table (becausee we're going to search `category_name` column in `categories` table)
                     // Note: It's best practice to name table columns with more verbose descriptive names (e.g. if the table name is `products`, then you should have a column called `product_id`, NOT `id`), and also, don't have repeated column names THROUGHOUT/ACROSS the tables of a certain (one) database (i.e. make all your database tables column names (throughout your database) UNIQUE (even columns in different tables!)). That's because of that problem that emerges when you join (JOIN clause) two tables which have the same column names, when you join them, the column names of the second table overrides the column names of the first table (similar column names override each other), leading to many problems. There are TWO ways/workarounds to tackle this problem
@@ -158,9 +158,10 @@ class ProductsController extends Controller
                     $search_product = $_REQUEST['search'];
 
                     // We fill in the $categoryDetails array MANUALLY with the same indexes/keys that come from the categoryDetails() method in Category.php model (because in either cases of the if-else statement, we pass in $categoryDetails variable to the view down below)
-                    $categoryDetails['breadcrumbs']                      = 'Best Sellers Products';
-                    $categoryDetails['categoryDetails']['category_name'] = 'Best Sellers Products';
-                    $categoryDetails['categoryDetails']['description']   = 'Best Sellers Products';
+                    $categoryDetails['breadcrumbs']                      = __('public.Best Sellers Products');
+                    $categoryDetails['categoryDetails']['category_name'] = __('public.Best Sellers Products');
+                    $categoryDetails['categoryDetails']['description']   = __('public.Best Sellers Products');
+
 
                     // We join `products` table (at the `category_id` column) with `categoreis` table (becausee we're going to search `category_name` column in `categories` table)
                     // Note: It's best practice to name table columns with more verbose descriptive names (e.g. if the table name is `products`, then you should have a column called `product_id`, NOT `id`), and also, don't have repeated column names THROUGHOUT/ACROSS the tables of a certain (one) database (i.e. make all your database tables column names (throughout your database) UNIQUE (even columns in different tables!)). That's because of that problem that emerges when you join (JOIN clause) two tables which have the same column names, when you join them, the column names of the second table overrides the column names of the first table (similar column names override each other), leading to many problems. There are TWO ways/workarounds to tackle this problem
@@ -177,9 +178,12 @@ class ProductsController extends Controller
                     $search_product = $_REQUEST['search'];
 
                     // We fill in the $categoryDetails array MANUALLY with the same indexes/keys that come from the categoryDetails() method in Category.php model (because in either cases of the if-else statement, we pass in $categoryDetails variable to the view down below)
-                    $categoryDetails['breadcrumbs']                      = 'Featured Products';
-                    $categoryDetails['categoryDetails']['category_name'] = 'Featured Products';
-                    $categoryDetails['categoryDetails']['description']   = 'Featured Products';
+                    $categoryDetails['breadcrumbs']                      = __('public.featured products');
+                    $categoryDetails['categoryDetails']['category_name'] = __('public.featured products');
+                    $categoryDetails['categoryDetails']['description']   = __('public.featured products');
+
+
+
 
                     // We join `products` table (at the `category_id` column) with `categoreis` table (becausee we're going to search `category_name` column in `categories` table)
                     // Note: It's best practice to name table columns with more verbose descriptive names (e.g. if the table name is `products`, then you should have a column called `product_id`, NOT `id`), and also, don't have repeated column names THROUGHOUT/ACROSS the tables of a certain (one) database (i.e. make all your database tables column names (throughout your database) UNIQUE (even columns in different tables!)). That's because of that problem that emerges when you join (JOIN clause) two tables which have the same column names, when you join them, the column names of the second table overrides the column names of the first table (similar column names override each other), leading to many problems. There are TWO ways/workarounds to tackle this problem
@@ -196,9 +200,9 @@ class ProductsController extends Controller
                     $search_product = $_REQUEST['search'];
 
                     // We fill in the $categoryDetails array MANUALLY with the same indexes/keys that come from the categoryDetails() method in Category.php model (because in either cases of the if-else statement, we pass in $categoryDetails variable to the view down below)
-                    $categoryDetails['breadcrumbs']                      = 'Discounted Products';
-                    $categoryDetails['categoryDetails']['category_name'] = 'Discounted Products';
-                    $categoryDetails['categoryDetails']['description']   = 'Discounted Products';
+                    $categoryDetails['breadcrumbs']                      = __('public.discounted products');
+                    $categoryDetails['categoryDetails']['category_name'] = __('public.discounted products');
+                    $categoryDetails['categoryDetails']['description']   = __('public.discounted products');
 
                     // We join `products` table (at the `category_id` column) with `categoreis` table (becausee we're going to search `category_name` column in `categories` table)
                     // Note: It's best practice to name table columns with more verbose descriptive names (e.g. if the table name is `products`, then you should have a column called `product_id`, NOT `id`), and also, don't have repeated column names THROUGHOUT/ACROSS the tables of a certain (one) database (i.e. make all your database tables column names (throughout your database) UNIQUE (even columns in different tables!)). That's because of that problem that emerges when you join (JOIN clause) two tables which have the same column names, when you join them, the column names of the second table overrides the column names of the first table (similar column names override each other), leading to many problems. There are TWO ways/workarounds to tackle this problem

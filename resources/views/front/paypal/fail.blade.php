@@ -11,10 +11,10 @@
                 <ul class="bread-crumb">
                     <li class="has-separator">
                         <i class="ion ion-md-home"></i>
-                        <a href="index.html">Home</a>
+                        <a href="/">@lang('public.home')</a>
                     </li>
                     <li class="is-marked">
-                        <a href="#">Payment Failed!</a>
+                        <a href="#">@lang('public.payment failed!')</a>
                     </li>
                 </ul>
             </div>
@@ -26,8 +26,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12" align="center">
-                    <h3>YOUR Payment Failed!</h3>
-                    <p>Please try again after some time and contact us if there is any enquiry.</p>
+                    <h3>@lang('public.your payment failed')</h3>
+                    <p>@lang('public.please try again after some time and contact us if there is any enquiry.')</p>
                 </div>
             </div>
         </div>
@@ -37,7 +37,7 @@
 
 
 
-{{-- Forget/Remove some data in the Session after making the PayPal payment --}} 
+{{-- Forget/Remove some data in the Session after making the PayPal payment --}}
 @php
     use Illuminate\Support\Facades\Session;
 

@@ -1,0 +1,33 @@
+<?php
+return[
+    "login/register"=>"Մուտք/Գրանցում",
+    "my accaunt"=>"Իմ հաշիվը",
+    "my cart"=>"Իմ զամբյուղը",
+    "checkout"=>"Դուրս գալ",
+    "my orders"=>"Իմ պատվերները",
+     "logout"=>"Դուրս գալ",
+     "customer login"=>"Հաճախորդի մուտք",
+     "vendor login"=>"Վաճառողի մուտք",
+     "search"=>"Որոնում",
+     "search everything"=>"Որոնել ամեն ինչ",
+     "choose category for search"=>"Ընտրիր կատեգորիա որոնման համար",
+     "all"=>"Բոլորը",
+     "all categories"=>"Բոլոր կատեգորիաները",
+    "new arrivals"=>"Նոր ապրանքներ",
+    "new"=>"ՆՈՐ",
+    "best seller"=>"Լավագույն վաճառող",
+    "hot"=>"Ամենավաճառվող",
+    "featured"=>"Նախընտրություն",
+    "discounted"=>"Զեղչված",
+    "more"=>"Ավելին",
+    "company"=>"ԸՆԿԵՐՈՒԹՅՈՒՆ",
+    "about us"=>"Մեր մասին",
+    "contact us"=>"Հետադարձ կապ",
+    "faq"=>"ՀՏՀ",
+    "collection"=>"ՀԱՎԱՔԱԾՈՒ",
+    "men clothing"=>"Տղամարդու հագուստ",
+    "women clothing"=>"Կանացի հագուստ",
+    "kids clothing"=>"Մանկական հագուստ",
+    "accaunt"=>"ՀԱՇԻՎ"
+]
+?>

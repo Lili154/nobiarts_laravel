@@ -37,11 +37,11 @@
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                     <a href="{{ url('admin/update-admin-details') }}" class="dropdown-item">
                     <i class="ti-settings text-primary"></i>
-                    Settings
+                    @lang('public.settings')
                     </a>
                     <a href="{{ url('admin/logout') }}" class="dropdown-item">
                     <i class="ti-power-off text-primary"></i>
-                    Logout
+                    @lang('public.logout')
                     </a>
                 </div>
             </li>

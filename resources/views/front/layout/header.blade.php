@@ -34,6 +34,7 @@ $sections = \App\Models\Section::sections();
                 </ul>
             </nav>
             <nav>
+                {{-- @lang('public.localization') --}}
                 <ul class="secondary-nav g-nav">
                     <li>
 
@@ -42,24 +43,15 @@ $sections = \App\Models\Section::sections();
                         <a>
                             {{-- If the user is authenticated/logged in, show 'My Account', if not, show 'Login/Register' --}}
                             @if (\Illuminate\Support\Facades\Auth::check()) {{-- Determining If The Current User Is Authenticated: https://laravel.com/docs/9.x/authentication#determining-if-the-current-user-is-authenticated --}}
-                                My Account
+                                @lang('public.my accaunt')
                             @else
-                                Login/Register
+                                @lang('public.login/register')
                             @endif
 
                             <i class="fas fa-chevron-down u-s-m-l-9"></i>
                         </a>
                         <ul class="g-dropdown" style="width:200px">
-                            <li>
-                                <a href="{{ url('cart') }}">
-                                <i class="fas fa-cog u-s-m-r-9"></i>
-                                My Cart</a>
-                            </li>
-                            <li>
-                                <a href="{{ url('checkout') }}">
-                                <i class="far fa-check-circle u-s-m-r-9"></i>
-                                Checkout</a>
-                            </li>
+
 
 
 
@@ -67,36 +59,46 @@ $sections = \App\Models\Section::sections();
                             @if (\Illuminate\Support\Facades\Auth::check())
                                 <li>
                                     <a href="{{ url('user/account') }}">
-                                        <i class="fas fa-sign-in-alt u-s-m-r-9"></i>
-                                        My Account
+                                        <i class="fas fa-cog u-s-m-r-9"></i>
+                                        @lang('public.my accaunt')
                                     </a>
                                 </li>
 
 
                                 <li>
                                     <a href="{{ url('user/orders') }}">
-                                        <i class="fas fa-sign-in-alt u-s-m-r-9"></i>
-                                        My Orders
+                                        <i class="far fa-bookmark u-s-m-r-9"></i>
+                                       @lang('public.my orders')
                                     </a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('cart') }}">
+                                    <i class="fa fa-shopping-cart u-s-m-r-9"></i>
+                                   @lang('public.my cart')</a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('checkout') }}">
+                                    <i class="far fa-check-circle u-s-m-r-9"></i>
+                                    @lang('public.checkout')</a>
                                 </li>
 
                                 <li>
                                     <a href="{{ url('user/logout') }}">
                                         <i class="fas fa-sign-in-alt u-s-m-r-9"></i>
-                                        Logout
+                                        @lang('public.logout')
                                     </a>
                                 </li>
                             @else
                                 <li>
                                     <a href="{{ url('user/login-register') }}">
                                         <i class="fas fa-sign-in-alt u-s-m-r-9"></i>
-                                        Customer Login
+                                        @lang('public.customer login')
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{ url('vendor/login-register') }}">
                                         <i class="fas fa-sign-in-alt u-s-m-r-9"></i>
-                                        Vendor Login
+                                       @lang('public.vendor login')
                                     </a>
                                 </li>
                             @endif
@@ -106,35 +108,37 @@ $sections = \App\Models\Section::sections();
                         </ul>
                     </li>
                     <li>
-                        <form id="currency-form" method="POST" action="{{ route('updateCurrency') }}">
-                            @csrf <!-- CSRF token -->
-                            <select id="currency-selector" name="currency">
-                                <option value="RUB">RUB</option>
-                                <option value="EUR">EUR</option>
-                                <option value="AMD">AMD</option>
-                                <option value="BGN">BGN</option>
-                            </select>
-                        </form>
-
+                        <a>RUB <i class="fas fa-chevron-down u-s-m-l-9"></i></a>
+                        <ul class="g-dropdown" style="width:70px">
+                            <li>
+                                <a href="#" onclick="changeCurrency('RUB')">RUB</a>
+                            </li>
+                            <li>
+                                <a href="#" onclick="changeCurrency('EUR')">EUR</a>
+                            </li>
+                            <li>
+                                <a href="#" onclick="changeCurrency('AMD')">AMD</a>
+                            </li>
+                            <li>
+                                <a href="#" onclick="changeCurrency('BGN')">BGN</a>
+                            </li>
+                        </ul>
                     </li>
+
+
                     <li>
-                        <a>ENG
+                        <a id="selected-language">{{ strtoupper(app()->getLocale()) }} <!-- Initially, this will display the selected language -->
                         <i class="fas fa-chevron-down u-s-m-l-9"></i>
                         </a>
                         <ul class="g-dropdown" style="width:70px">
-                            <li>
-                                <a href="#" class="u-c-brand">ENG</a>
-                            </li>
-                            <li>
-                                <a href="#">RU</a>
-                            </li>
-                            <li>
-                                <a href="#">BGN</a>
-                            </li>
-                            <li>
-                                <a href="#">AM</a>
-                            </li>
+                            @foreach(['en', 'ru', 'bgn', 'am'] as $lang)
+                                <li>
+                                    <a href="{{ url('locale/'.$lang) }}" class="language-option">{{ strtoupper($lang) }}</a>
+                                </li>
+                            @endforeach
                         </ul>
+                    </li>
+
                 </ul>
             </nav>
         </div>
@@ -162,14 +166,14 @@ $sections = \App\Models\Section::sections();
 
                     {{-- Website Search Form (to search for all website products) --}}
                     <form class="form-searchbox" action="{{ url('/search-products') }}" method="get">
-                        <label class="sr-only" for="search-landscape">Search</label>
-                        <input id="search-landscape" type="text" class="text-field" placeholder="Search everything" name="search" @if (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) value="{{ $_REQUEST['search'] }}" @endif>
+                        <label class="sr-only" for="search-landscape">@lang('public.search')</label>
+                        <input id="search-landscape" type="text" class="text-field" placeholder="@lang('public.search everything')" name="search" @if (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) value="{{ $_REQUEST['search'] }}" @endif>
                         <div class="select-box-position">
                             <div class="select-box-wrapper select-hide">
-                                <label class="sr-only" for="select-category">Choose category for search</label>
+                                <label class="sr-only" for="select-category">@lang('public.choose category for search')</label>
                                 <select class="select-box" id="select-category" name="section_id">
 
-                                    <option selected="selected" value="">All</option>
+                                    <option selected="selected" value="">@lang('public.all')</option>
                                     @foreach ($sections as $section)
                                         <option value="{{ $section['id'] }}"  @if (isset($_REQUEST['section_id']) && !empty($_REQUEST['section_id']) && $_REQUEST['section_id'] == $section['id']) selected @endif>{{ $section['name'] }}</option>
                                     @endforeach
@@ -234,7 +238,7 @@ $sections = \App\Models\Section::sections();
                     <div class="v-menu v-close" style="background:#5E0071 !important;">
                         <span class="v-title">
                         <i class="ion ion-md-menu"></i>
-                        All Categories
+                        @lang('public.all categories')
                         <i class="fas fa-angle-down"></i>
                         </span>
                         <nav>
@@ -298,64 +302,64 @@ $sections = \App\Models\Section::sections();
                 <div class="col-lg-9">
                     <ul class="bottom-nav g-nav u-d-none-lg">
                         <li>
-                            <a href="{{ url('search-products?search=new-arrivals') }}">New Arrivals
-                            <span class="superscript-label-new">NEW</span>
+                            <a href="{{ url('search-products?search=new-arrivals') }}">@lang('public.new arrivals')
+                            <span class="superscript-label-new">@lang('public.new')</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{ url('search-products?search=best-sellers') }}">Best Seller
-                            <span class="superscript-label-hot">HOT</span>
+                            <a href="{{ url('search-products?search=best-sellers') }}">@lang('public.best seller')
+                            <span class="superscript-label-hot">@lang('public.hot')</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{ url('search-products?search=featured') }}">Featured
+                            <a href="{{ url('search-products?search=featured') }}">@lang('public.featured')
                             </a>
                         </li>
                         <li>
-                            <a href="{{ url('search-products?search=discounted') }}">Discounted
+                            <a href="{{ url('search-products?search=discounted') }}">@lang('public.discounted')
                             <span class="superscript-label-discount">>10%</span>
                             </a>
                         </li>
-                        <li class="mega-position">
-                            <a>More
+                        {{-- <li class="mega-position">
+                            <a>@lang('public.more')
                             <i class="fas fa-chevron-down u-s-m-l-9"></i>
                             </a>
                             <div class="mega-menu mega-3-colm">
                                 <ul>
-                                    <li class="menu-title">COMPANY</li>
+                                    <li class="menu-title">@lang('public.company')</li>
                                     <li>
-                                        <a href="{{ url('about-us') }}" class="u-c-brand">About Us</a>
+                                        <a href="{{ url('about-us') }}" class="u-c-brand">@lang('public.about us')</a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('contact') }}">Contact Us</a>
+                                        <a href="{{ url('contact') }}">@lang('public.contact us')</a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('faq') }}">FAQ</a>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li class="menu-title">COLLECTION</li>
-                                    <li>
-                                        <a href="{{ url('men') }}">Men Clothing</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('women') }}">Women Clothing</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('kids') }}">Kids Clothing</a>
+                                        <a href="{{ url('faq') }}">@lang('public.faq')</a>
                                     </li>
                                 </ul>
                                 <ul>
-                                    <li class="menu-title">ACCOUNT</li>
+                                    <li class="menu-title">@lang('public.collection')</li>
                                     <li>
-                                        <a href="{{ url('user/account') }}">My Account</a>
+                                        <a href="{{ url('men') }}">@lang('public.men clothing')</a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('user/orders') }}">My Orders</a>
+                                        <a href="{{ url('women') }}">@lang('public.women clothing')</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('kids') }}">@lang('public.kids clothing')</a>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li class="menu-title">@lang("public.accaunt")</li>
+                                    <li>
+                                        <a href="{{ url('user/account') }}">@lang('public.my accaunt')</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('user/orders') }}">@lang('public.my orders')</a>
                                     </li>
                                 </ul>
                             </div>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
             </div>
@@ -364,33 +368,42 @@ $sections = \App\Models\Section::sections();
     <!-- Bottom-Header /- -->
 </header>
 <!-- Header /- -->
-@push('js')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var currencySelector = document.getElementById('currency-selector');
+    // Move the changeCurrency function outside of $(document).ready()
+    function changeCurrency(currency) {
+        $.ajax({
+            type: 'POST',
+            url: '{{ route("changeCurrency") }}',
+            headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+            data: { currency: currency },
+            success: function(data) {
+                // Reload the page to apply the currency change
+                location.reload();
+            }
+        });
+    }
 
-        if (currencySelector) {
-            currencySelector.addEventListener('change', function() {
-                var selectedCurrency = this.value;
-
-                // Send AJAX request to update currency
-                $.ajax({
-                    url: '{{ route("updateCurrency") }}',
-                    type: 'POST',
-                    data: {
-                        currency: selectedCurrency,
-                        _token: '{{ csrf_token() }}'
-                    },
-                    success: function(response) {
-                        console.log(response);
-                        // Reload page or update currency values dynamically
-                    },
-                    error: function(xhr) {
-                        console.log(xhr.responseText);
-                    }
-                });
+    $(document).ready(function() {
+        function updateProductPrices(currency) {
+            // Send AJAX request to retrieve converted prices for all products
+            $.ajax({
+                type: 'GET',
+                url: '{{ route("getConvertedPrices") }}',
+                data: { currency: currency },
+                success: function(data) {
+                    // Update product prices on the page
+                    $('.getAttributePrice').each(function(index) {
+                        var productId = $(this).data('product-id');
+                        $(this).text(data[productId]);
+                    });
+                }
             });
         }
+
+        // Call updateProductPrices function initially
+        updateProductPrices('{{ session("currency") }}');
     });
 </script>
-@endpush

@@ -13,21 +13,21 @@
             <tr><td>&nbsp;</td></tr>
             <tr><td><img src="{{ asset('front/images/main-logo/main-logo.png') }}"></td></tr>
             <tr><td>&nbsp;</td></tr>
-            <tr><td>Hello {{ $name }}</td></tr>
+            <tr><td>@lang('public.hello') {{ $name }}</td></tr>
             <tr><td>&nbsp;<br></td></tr>
-            <tr><td>Thank you for shopping with us. Your order details are as below:-</td></tr>
+            <tr><td>@lang('public.Thank you for shopping with us. Your order details are as below:')</td></tr>
             <tr><td>&nbsp;</td></tr>
-            <tr><td>Order no. {{ $order_id }}</td></tr>
+            <tr><td>@lang('public.order') N. {{ $order_id }}</td></tr>
             <tr><td>&nbsp;</td></tr>
             <tr><td>
                 <table style="width: 95%" cellpadding="5" cellspacing="5" bgcolor="#f7f4f4">
                     <tr bgcolor="#cccccc">
-                        <td>Product Name</td>
-                        <td>Product Code</td>
-                        <td>Product Size</td>
-                        <td>Product Color</td>
-                        <td>Product Quantity</td>
-                        <td>Product Price</td>
+                        <td>@lang('public.product name')</td>
+                        <td>@lang('public.product code')</td>
+                        <td>@lang('public.product size')</td>
+                        <td>@lang('public.product color')</td>
+                        <td>@lang('public.product quantity')</td>
+                        <td>@lang('public.product price')</td>
                     </tr>
                     @foreach ($orderDetails['orders_products'] as $order)
                         <tr bgcolor="#f9f9f9">
@@ -40,11 +40,11 @@
                         </tr>
                     @endforeach
                         <tr>
-                            <td colspan="5" align="right">Shipping Charges</td>
+                            <td colspan="5" align="right">@lang('public.shipping charges')</td>
                             <td>INR {{ $orderDetails['shipping_charges'] }}</td>
                         </tr>
                         <tr>
-                            <td colspan="5" align="right">Coupon Discount</td>
+                            <td colspan="5" align="right">@lang('public.coupon discount')</td>
                             <td>
                                 INR
                                 @if ($orderDetails['coupon_amount'] > 0)
@@ -55,7 +55,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="5" align="right">Grand Total</td>
+                            <td colspan="5" align="right">@lang('public.grand total')</td>
                             <td>INR {{ $orderDetails['grand_total'] }}</td>
                         </tr>
                 </table>
@@ -64,7 +64,7 @@
             <tr><td>
                 <table>
                     <tr>
-                        <td><strong>Delivery Address:</strong></td>
+                        <td><strong>@lang('public.delivery address'):</strong></td>
                     </tr>
                     <tr>
                         <td>{{ $orderDetails['name'] }}</td>
@@ -94,16 +94,16 @@
             {{-- PDF Invoice download link --}}
             <tr>
                 <td>
-                    <a href="{{ url('orders/invoice/download/' . $orderDetails['id']) }}">Click here to Download Order Invoice</a>
+                    <a href="{{ url('orders/invoice/download/' . $orderDetails['id']) }}">@lang('public.click here to Download Order Invoice')</a>
                     <br>
-                    (Copy & Paste link to open if it doesn't work!)
+                   @lang("public. (Copy & Paste link to open if it doesn't work!)")
                 </td>
             </tr>
 
             <tr><td>&nbsp;</td></tr>
-            <tr><td>For any queries, you can contact us at <a href="mailto:info@nobiarts.com">info@nobiarts.com</a></td></tr>
+            <tr><td>@lang('public.for any queries, you can contact us at') <a href="mailto:info@nobiarts.com">info@nobiarts.com</a></td></tr>
             <tr><td>&nbsp;</td></tr>
-            <tr><td>Regards,<br>Team Nobiarts</td></tr>
+            <tr><td>@lang('public.regards,')<br>@lang('public.team') Nobiarts</td></tr>
             <tr><td>&nbsp;</td></tr>
         </table>
     </body>

@@ -67,7 +67,7 @@ class UserController extends Controller
                     'code'   => base64_encode($data['email']) // We base64 code the user's $email and send it as a Route Parameter from resources/views/emails/confirmation.blade.php to the 'user/confirm/{code}' route in web.php, then it gets base64 de-coded again in confirmUser() method in Front/UserController.php    // We will use the opposite: base64_decode() in the confirmUser() method to decode the encoded string (encode X decode)
                 ];
                 \Illuminate\Support\Facades\Mail::send('emails.confirmation', $messageData, function ($message) use ($email) { // Sending Mail: https://laravel.com/docs/9.x/mail#sending-mail    // 'emails.confirmation' is the resources/views/emails/confirmation.blade.php file that will be sent as an email    // We pass in all the variables that confirmation.blade.php will use    // https://www.php.net/manual/en/functions.anonymous.php
-                    $message->to($email)->subject('Confirm your Multi-vendor E-commerce Application Account');
+                    $message->to($email)->subject('Confirm your Nobiarts accaunt');
                 });
 
                 // Redirect user back with a success message
@@ -77,7 +77,7 @@ class UserController extends Controller
                 return response()->json([ // JSON Responses: https://laravel.com/docs/9.x/responses#json-responses
                     'type'    => 'success',
                     'url'     => $redirectTo, // redirect user to the Cart cart.blade.php page
-                    'message' => 'Please confirm your email to activate your account!'
+                    'message' => __('public.please confirm your email to activate your account!')
                 ]);
 
 
@@ -182,7 +182,7 @@ class UserController extends Controller
         Session::flush(); // Deleting Data: https://laravel.com/docs/9.x/session#deleting-data
 
 
-        return redirect('/Become-a-vendor');
+        return redirect('/');
     }
 
 

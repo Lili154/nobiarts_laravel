@@ -13,7 +13,7 @@
                             $product_image_path = 'front/images/product_images/small/' . $product['product_image'];
                         @endphp
 
-                        @if (!empty($product['product_image']) && file_exists($product_image_path)) 
+                        @if (!empty($product['product_image']) && file_exists($product_image_path))
                             <img class="img-fluid" src="{{ asset($product_image_path) }}" alt="Product">
                         @else {{-- show the dummy image --}}
                             <img class="img-fluid" src="{{ asset('front/images/product_images/small/no-image.png') }}" alt="Product">
@@ -22,10 +22,10 @@
 
                     </a>
                     <div class="item-action-behaviors">
-                        <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
-                        <a class="item-mail" href="javascript:void(0)">Mail</a>
-                        <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                        <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
+                        <a class="item-quick-look" data-toggle="modal" href="#quick-view">@lang('public.quick look')</a>
+                        <a class="item-mail" href="javascript:void(0)">@lang('public.email')</a>
+                        <a class="item-addwishlist" href="javascript:void(0)">@lang('public.add to wishlist')</a>
+                        <a class="item-addCart" href="javascript:void(0)">@lang('public.add to cart')</a>
                     </div>
                 </div>
                 <div class="item-content">
@@ -94,7 +94,7 @@
                 @endphp
                 @if ($isProductNew == 'Yes')
                     <div class="tag new">
-                        <span>NEW</span>
+                        <span>@lang('public.new')</span>
                     </div>
                 @endif
 

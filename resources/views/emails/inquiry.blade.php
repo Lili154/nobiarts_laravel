@@ -10,20 +10,20 @@
     </head>
     <body>
         <table>
-            <tr><td>Dear Admin!</td></tr>
+            <tr><td>@lang('public.dear admin!')</td></tr>
             <tr><td>&nbsp;</td></tr>
-            <tr><td>User's Inquiry on Nobiarts Website, Contact Us page. The details are as below:</td></tr>
+            <tr><td>@lang("public.User's Inquiry on Nobiarts Website, Contact Us page. The details are as below:")</td></tr>
             <tr><td>&nbsp;</td></tr>
-            <tr><td>Name: {{ $name }}</td></tr>
+            <tr><td>@lang('public.name'): {{ $name }}</td></tr>
             <tr><td>&nbsp;</td></tr>
-            <tr><td>Email: {{ $email }}</td></tr>
+            <tr><td>@lang('public.email'): {{ $email }}</td></tr>
             <tr><td>&nbsp;</td></tr>
-            <tr><td>Subject: {{ $subject }}</td></tr>
+            <tr><td>@lang('public.subject'): {{ $subject }}</td></tr>
             <tr><td>&nbsp;</td></tr>
-            <tr><td>Message: {{ $comment }}</td></tr>
+            <tr><td>@lang('public.message:') {{ $comment }}</td></tr>
             <tr><td>&nbsp;</td></tr>
             <tr><td>&nbsp;</td></tr>
-            <tr><td>Thanks & Regards,</td></tr>
+            <tr><td>@lang('public.Thanks & Regards,')</td></tr>
             <tr><td>Nobiarts</td></tr>
         </table>
     </body>

@@ -1,10 +1,10 @@
-{{-- Modal Popup --}} 
+{{-- Modal Popup --}}
 
 
 <!-- Dummy Selectbox -->
 <div class="select-dummy-wrapper">
     <select id="compute-select">
-        <option id="compute-option">All</option>
+        <option id="compute-option">@lang('public.all')</option>
     </select>
 </div>
 <!-- Dummy Selectbox /- -->
@@ -13,10 +13,10 @@
     <button type="button" class="button ion ion-md-close" id="responsive-search-close-button"></button>
     <div class="responsive-search-container">
         <div class="container">
-            <p>Start typing and press Enter to search</p>
+            <p>@lang('public.start typing and press Enter to search')</p>
             <form class="responsive-search-form">
-                <label class="sr-only" for="search-text">Search</label>
-                <input id="search-text" type="text" class="responsive-search-field" placeholder="PLEASE SEARCH">
+                <label class="sr-only" for="search-text">@lang('public.search')</label>
+                <input id="search-text" type="text" class="responsive-search-field" placeholder="@lang('public.please search')">
                 <i class="fas fa-search"></i>
             </form>
         </div>
@@ -69,21 +69,21 @@
                             <div class="section-1-title-breadcrumb-rating">
                                 <div class="product-title">
                                     <h1>
-                                        <a href="single-product.html">Product Name</a>
+                                        <a href="single-product.html">@lang('public.product name')</a>
                                     </h1>
                                 </div>
                                 <ul class="bread-crumb">
                                     <li class="has-separator">
-                                        <a href="index.html">Home</a>
+                                        <a href="/">@lang('public.home')</a>
                                     </li>
                                     <li class="has-separator">
-                                        <a href="shop-v1-root-category.html">Men Clothing </a>
+                                        <a href="shop-v1-root-category.html">@lang('public.men clothing') </a>
                                     </li>
                                     <li class="has-separator">
-                                        <a href="listing.html">Tops</a>
+                                        <a href="listing.html">@lang('public.tops')</a>
                                     </li>
                                     <li class="is-marked">
-                                        <a href="shop-v3-sub-sub-category.html">Hoodies</a>
+                                        <a href="shop-v3-sub-sub-category.html">@lang('public.hoodies')</a>
                                     </li>
                                 </ul>
                                 <div class="product-rating">
@@ -94,7 +94,7 @@
                                 </div>
                             </div>
                             <div class="section-2-short-description u-s-p-y-14">
-                                <h6 class="information-heading u-s-m-b-8">Description:</h6>
+                                <h6 class="information-heading u-s-m-b-8">@lang('public.description:')</h6>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                                 </p>
                             </div>
@@ -103,60 +103,60 @@
                                     <h4>$100.00</h4>
                                 </div>
                                 <div class="original-price">
-                                    <span>Original Price:</span>
+                                    <span>@lang('public.original price:')</span>
                                     <span>$120.00</span>
                                 </div>
                                 <div class="discount-price">
-                                    <span>Discount:</span>
+                                    <span>@lang('public.discount:')</span>
                                     <span>15%</span>
                                 </div>
                                 <div class="total-save">
-                                    <span>Save:</span>
+                                    <span>@lang('public.save')</span>
                                     <span>$20</span>
                                 </div>
                             </div>
                             <div class="section-4-sku-information u-s-p-y-14">
-                                <h6 class="information-heading u-s-m-b-8">Sku Information:</h6>
+                                <h6 class="information-heading u-s-m-b-8">@lang('public.sku information:')</h6>
                                 <div class="availability">
-                                    <span>Availability:</span>
-                                    <span>In Stock</span>
+                                    <span>@lang('public.availability:')</span>
+                                    <span>@lang('public.in stock')</span>
                                 </div>
                                 <div class="left">
-                                    <span>Only:</span>
-                                    <span>50 left</span>
+                                    <span>@lang('public.only:')</span>
+                                    <span>50 @lang('public.left')</span>
                                 </div>
                             </div>
                             <div class="section-5-product-variants u-s-p-y-14">
-                                <h6 class="information-heading u-s-m-b-8">Product Variants:</h6>
+                                <h6 class="information-heading u-s-m-b-8">@lang('public.product variants:')</h6>
                                 <div class="color u-s-m-b-11">
-                                    <span>Available Color:</span>
+                                    <span>@lang('public.available color:')</span>
                                     <div class="color-variant select-box-wrapper">
                                         <select class="select-box product-color">
-                                            <option value="1">Heather Grey</option>
-                                            <option value="3">Black</option>
-                                            <option value="5">White</option>
+                                            <option value="1">@lang('public.heather grey')</option>
+                                            <option value="3">@lang('public.black')</option>
+                                            <option value="5">@lang('public.white')</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="sizes u-s-m-b-11">
-                                    <span>Available Size:</span>
+                                    <span>@lang('public.available size')</span>
                                     <div class="size-variant select-box-wrapper">
                                         <select class="select-box product-size">
-                                            <option value="">Male 2XL</option>
-                                            <option value="">Male 3XL</option>
-                                            <option value="">Kids 4</option>
-                                            <option value="">Kids 6</option>
-                                            <option value="">Kids 8</option>
-                                            <option value="">Kids 10</option>
-                                            <option value="">Kids 12</option>
-                                            <option value="">Female Small</option>
-                                            <option value="">Male Small</option>
-                                            <option value="">Female Medium</option>
-                                            <option value="">Male Medium</option>
-                                            <option value="">Female Large</option>
-                                            <option value="">Male Large</option>
-                                            <option value="">Female XL</option>
-                                            <option value="">Male XL</option>
+                                            <option value="">@lang('public.male') 2XL</option>
+                                            <option value="">@lang('public.male') 3XL</option>
+                                            <option value="">@lang('public.kids') 4</option>
+                                            <option value="">@lang('public.kids') 6</option>
+                                            <option value="">@lang('public.kids') 8</option>
+                                            <option value="">@lang('public.kids') 10</option>
+                                            <option value="">@lang('public.kids') 12</option>
+                                            <option value="">@lang('public.female') @lang('public.small')</option>
+                                            <option value="">@lang('public.male') @lang('public.small')</option>
+                                            <option value="">@lang('public.female') @lang('public.medium')</option>
+                                            <option value="">@lang('public.male') @lang('public.medium')</option>
+                                            <option value="">@lang('public.female') @lang('public.large')</option>
+                                            <option value="">@lang('public.male') @lang('public.large')</option>
+                                            <option value="">@lang('public.female') XL</option>
+                                            <option value="">@lang('public.male') XL</option>
                                         </select>
                                     </div>
                                 </div>
@@ -164,7 +164,7 @@
                             <div class="section-6-social-media-quantity-actions u-s-p-y-14">
                                 <form action="#" class="post-form">
                                     <div class="quick-social-media-wrapper u-s-m-b-22">
-                                        <span>Share:</span>
+                                        <span>@lang('public.share:')</span>
                                         <ul class="social-media-list">
                                             <li>
                                                 <a href="#">
@@ -194,7 +194,7 @@
                                         </ul>
                                     </div>
                                     <div class="quantity-wrapper u-s-m-b-22">
-                                        <span>Quantity:</span>
+                                        <span>@lang('public.quantity:')</span>
                                         <div class="quantity">
                                             <input type="text" class="quantity-text-field" value="1">
                                             <a class="plus-a" data-max="1000">&#43;</a>
@@ -202,7 +202,7 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <button class="button button-outline-secondary" type="submit">Add to cart</button>
+                                        <button class="button button-outline-secondary" type="submit">@lang('public.add to cart')</button>
                                         <button class="button button-outline-secondary far fa-heart u-s-m-l-6"></button>
                                         <button class="button button-outline-secondary far fa-envelope u-s-m-l-6"></button>
                                     </div>

@@ -11,16 +11,16 @@
     <div class="page-style-a">
         <div class="container">
             <div class="page-intro">
-                <h2 style="color:#792D89">My Orders</h2>
-                {{-- <ul class="bread-crumb">
+                <h2 style="color:#792D89">@lang('public.my orders')</h2>
+                <ul class="bread-crumb">
                     <li class="has-separator">
                         <i class="ion ion-md-home"></i>
-                        <a href="index.html">Home</a>
+                        <a href="/">@lang('public.home')</a>
                     </li>
                     <li class="is-marked">
-                        <a href="#">Orders</a>
+                        <a href="#">@lang('public.orders')</a>
                     </li>
-                </ul> --}}
+                </ul>
             </div>
         </div>
     </div>
@@ -31,11 +31,11 @@
             <div class="row">
                 <table class="table table-striped table-borderless">
                     <tr class="table-danger">
-                        <th>Order ID</th>
-                        <th>Ordered Products</th> {{-- We'll display products codes --}}
-                        <th>Payment Method</th>
-                        <th>Grand Total</th>
-                        <th>Created on</th>
+                        <th>@lang('public.order') ID</th>
+                        <th>@lang('public.ordered products')</th> {{-- We'll display products codes --}}
+                        <th>@lang('public.payment method')</th>
+                        <th>@lang('public.grand total')</th>
+                        <th>@lang('public.created on')</th>
                         @foreach ($orders as $order)
                             <tr>
                                 <td>

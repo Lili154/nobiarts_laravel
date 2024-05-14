@@ -7,14 +7,14 @@
     <div class="page-style-a">
         <div class="container">
             <div class="page-intro">
-                <h2>Cart</h2>
+                <h2>@lang('public.cart')</h2>
                 <ul class="bread-crumb">
                     <li class="has-separator">
                         <i class="ion ion-md-home"></i>
-                        <a href="index.html">Home</a>
+                        <a href="/">@lang('public.home')</a>
                     </li>
                     <li class="is-marked">
-                        <a href="#">Thanks</a>
+                        <a href="#">@lang('public.thanks')</a>
                     </li>
                 </ul>
             </div>
@@ -26,8 +26,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12" align="center">
-                    <h3>YOUR ORDER HAS BEEN PLACED SUCCESSFULLY</h3>
-                    <p>Your order number is {{ Session::get('order_id') }} and Grand Total is INR {{ Session::get('grand_total') }}</p> {{-- The Order Number is the order `id` in the `orders` database table. We stored the order id in Session in checkout() method in Front/ProductsController.php --}} {{-- Retrieving Data: https://laravel.com/docs/10.x/session#retrieving-data --}}
+                    <h3>@lang('public.your order has been places successfully')</h3>
+                    <p>@lang('public.your order number is') {{ Session::get('order_id') }} @lang('public.and grand total is EUR') {{ Session::get('grand_total') }}</p> {{-- The Order Number is the order `id` in the `orders` database table. We stored the order id in Session in checkout() method in Front/ProductsController.php --}} {{-- Retrieving Data: https://laravel.com/docs/10.x/session#retrieving-data --}}
                 </div>
             </div>
         </div>
@@ -37,7 +37,7 @@
 
 
 
-{{-- Forget/Remove some data in the Session after making/placing the order --}} 
+{{-- Forget/Remove some data in the Session after making/placing the order --}}
 @php
     use Illuminate\Support\Facades\Session;
 

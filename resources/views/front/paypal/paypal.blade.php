@@ -11,10 +11,10 @@
                 <ul class="bread-crumb">
                     <li class="has-separator">
                         <i class="ion ion-md-home"></i>
-                        <a href="index.html">Home</a>
+                        <a href="/">@lang('public.home')</a>
                     </li>
                     <li class="is-marked">
-                        <a href="#">Proceed to Payment</a>
+                        <a href="#">@lang('public.proceed to payment')</a>
                     </li>
                 </ul>
             </div>
@@ -26,7 +26,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12" align="center">
-                    <h3>PLEASE MAKE PAYMENT FOR YOUR ORDER</h3>
+                    <h3>@lang('public.please make payment for your order')</h3>
                     <form action="{{ route('payment') }}" method="post"> {{-- This is a Named Route. Check web.php --}} {{-- Generating URLs To Named Routes: https://laravel.com/docs/9.x/routing#generating-urls-to-named-routes --}}
                         @csrf {{-- Preventing CSRF Requests: https://laravel.com/docs/9.x/csrf#preventing-csrf-requests --}}
 

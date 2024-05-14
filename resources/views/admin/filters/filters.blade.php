@@ -8,16 +8,16 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Filters</h4>
-                            <a href="{{ url('admin/filters-values') }}"  style="max-width: 163px; float: right; display: inline-block" class="btn btn-block btn-primary">View Filter Values</a>
-                            <a href="{{ url('admin/add-edit-filter') }}" style="max-width: 169px; float: left;  display: inline-block" class="btn btn-block btn-primary">Add Filter Column</a>
+                            <h4 class="card-title">@lang('public.filters')</h4>
+                            <a href="{{ url('admin/filters-values') }}"  style="max-width: 163px; float: right; display: inline-block" class="btn btn-block btn-primary">@lang('public.view filter value')</a>
+                            <a href="{{ url('admin/add-edit-filter') }}" style="max-width: 169px; float: left;  display: inline-block" class="btn btn-block btn-primary">@lang('public.add filter column')</a>
 
                             {{-- Displaying The Validation Errors: https://laravel.com/docs/9.x/validation#quick-displaying-the-validation-errors AND https://laravel.com/docs/9.x/blade#validation-errors --}}
                             {{-- Determining If An Item Exists In The Session (using has() method): https://laravel.com/docs/9.x/session#determining-if-an-item-exists-in-the-session --}}
                             {{-- Our Bootstrap success message in case of updating admin password is successful: --}}
                             @if (Session::has('success_message')) <!-- Check AdminController.php, updateAdminPassword() method -->
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    <strong>Success:</strong> {{ Session::get('success_message') }}
+                                    <strong>@lang('public.success:')</strong> {{ Session::get('success_message') }}
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                     </button>
@@ -31,10 +31,10 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Filter Name</th>
-                                            <th>Filter Column</th>
-                                            <th>Categories</th>
-                                            <th>Status</th>
+                                            <th>@lang('public.filter name')</th>
+                                            <th>@lang('public.filter column')</th>
+                                            <th>@lang('public.categories')</th>
+                                            <th>@lang('public.status')</th>
                                         </tr>
                                     </thead>
                                     <tbody>

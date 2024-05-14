@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front\CurrencyController;
+use App\Http\Controllers\TermsController;
+
+
 
 
 
@@ -18,10 +21,14 @@ use App\Http\Controllers\Front\CurrencyController;
 
 require __DIR__.'/auth.php';
 
+Route::get('/terms-and-conditions', [TermsController::class,'show'])->name('terms');
+Route::get('/offer', [TermsController::class,'offer'])->name('offer');
 
-Route::post('/update-currency', [CurrencyController::class, 'updateCurrency'])
-    ->name('updateCurrency')
-    ->middleware('SetCurrency');
+
+Route::match(['get', 'post'], '/change-currency', [CurrencyController::class, 'changeCurrency'])
+->name('changeCurrency')->middleware('SetCurrency');
+Route::get('/get-converted-prices', [CurrencyController::class,'getConvertedPrices'])->name('getConvertedPrices')->middleware('SetCurrency');
+
 
 
 
@@ -179,12 +186,12 @@ Route::get('orders/invoice/download/{id}', 'App\Http\Controllers\Admin\OrderCont
 
 
 
+// Route::match(['get', 'post'], '/change-currency', [CurrencyController::class, 'changeCurrency'])->name('changeCurrency')->middleware('ChangeCurrency');
+// Route::get('/get-converted-prices', [CurrencyController::class,'getConvertedPrices'])->name('getConvertedPrices')->middleware('ChangeCurrency');
 
-// Route::get('/{locale?}', function($locale = null){
-//     if (isset($locale) && in_array($locale, config('app.available_locales'))){
-//         app()->setLocale($locale);
-//     }
-// })
+Route::get('locale/{lang}', 'App\Http\Controllers\LocalizationController@setLang');
+
+
 // Second: FRONT section routes:
 Route::namespace('App\Http\Controllers\Front')->group(function() {
     Route::get('/', 'IndexController@index');

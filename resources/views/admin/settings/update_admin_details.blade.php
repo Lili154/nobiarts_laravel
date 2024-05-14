@@ -8,7 +8,7 @@
                 <div class="col-md-12 grid-margin">
                     <div class="row">
                         <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                            <h3 class="font-weight-bold">Admin Settings</h3>
+                            <h3 class="font-weight-bold">@lang('public.admin settings')</h3>
                         </div>
                         <div class="col-12 col-xl-4">
                             <div class="justify-content-end d-flex">
@@ -32,14 +32,14 @@
                 <div class="col-md-6 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Update Admin Details</h4>
+                            <h4 class="card-title">@lang('public.update admin details')</h4>
 
 
                             {{-- Our Bootstrap error code in case of wrong current password or the new password and confirm password are not matching: --}}
                             {{-- Determining If An Item Exists In The Session (using has() method): https://laravel.com/docs/9.x/session#determining-if-an-item-exists-in-the-session --}}
                             @if (Session::has('error_message')) <!-- Check AdminController.php, updateAdminPassword() method -->
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <strong>Error:</strong> {{ Session::get('error_message') }}
+                                <strong>@lang('public.error:')</strong> {{ Session::get('error_message') }}
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
@@ -48,7 +48,7 @@
 
 
 
-                            {{-- Displaying Laravel Validation Errors: https://laravel.com/docs/9.x/validation#quick-displaying-the-validation-errors --}}    
+                            {{-- Displaying Laravel Validation Errors: https://laravel.com/docs/9.x/validation#quick-displaying-the-validation-errors --}}
                             @if ($errors->any())
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 {{-- <strong>Error:</strong> {{ Session::get('error_message') }} --}}
@@ -70,43 +70,43 @@
                             {{-- Our Bootstrap success message in case of updating admin password is successful: --}}
                             @if (Session::has('success_message')) <!-- Check AdminController.php, updateAdminPassword() method -->
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    <strong>Success:</strong> {{ Session::get('success_message') }}
+                                    <strong>@lang('public.success:')</strong> {{ Session::get('success_message') }}
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                             @endif
-                
 
-                            
+
+
                             <form class="forms-sample" action="{{ url('admin/update-admin-details') }}" method="post" enctype="multipart/form-data"> @csrf <!-- Using the enctype="multipart/form-data" to allow uploading files (images) -->
                                 <div class="form-group">
-                                    <label>Admin Username/Email</label>
+                                    <label>@lang('public.admin username/email')</label>
                                     <input class="form-control" value="{{ Auth::guard('admin')->user()->email }}" readonly> <!-- Check updateAdminPassword() method in AdminController.php --> {{-- Accessing Specific Guard Instances: https://laravel.com/docs/9.x/authentication#accessing-specific-guard-instances --}}
                                 </div>
                                 <div class="form-group">
-                                    <label>Admin Type</label>
+                                    <label>@lang('public.admin type')</label>
                                     <input class="form-control" value="{{ Auth::guard('admin')->user()->type }}" readonly> {{-- Accessing Specific Guard Instances: https://laravel.com/docs/9.x/authentication#accessing-specific-guard-instances --}}
                                 </div>
                                 <div class="form-group">
-                                    <label for="admin_name">Name</label>
-                                    <input type="text" class="form-control" id="admin_name" placeholder="Enter Name" name="admin_name" value="{{ Auth::guard('admin')->user()->name }}"> {{-- Accessing Specific Guard Instances: https://laravel.com/docs/9.x/authentication#accessing-specific-guard-instances --}}
+                                    <label for="admin_name">@lang('public.name')</label>
+                                    <input type="text" class="form-control" id="admin_name" placeholder="@lang('public.enter name')" name="admin_name" value="{{ Auth::guard('admin')->user()->name }}"> {{-- Accessing Specific Guard Instances: https://laravel.com/docs/9.x/authentication#accessing-specific-guard-instances --}}
                                 </div>
                                 <div class="form-group">
-                                    <label for="admin_mobile">Mobile</label>
-                                    <input type="text" class="form-control" id="admin_mobile" placeholder="Enter 10 Digit Mobile Number" name="admin_mobile" value="{{ Auth::guard('admin')->user()->mobile }}" maxlength="10" minlength="10"> {{-- Accessing Specific Guard Instances: https://laravel.com/docs/9.x/authentication#accessing-specific-guard-instances --}}
+                                    <label for="admin_mobile">@lang('public.mobile')</label>
+                                    <input type="text" class="form-control" id="admin_mobile" placeholder="@lang('public.Enter 10 Digit Mobile Number')" name="admin_mobile" value="{{ Auth::guard('admin')->user()->mobile }}" maxlength="10" minlength="10"> {{-- Accessing Specific Guard Instances: https://laravel.com/docs/9.x/authentication#accessing-specific-guard-instances --}}
                                 </div>
                                 <div class="form-group">
-                                    <label for="admin_image">Admin Photo</label>
+                                    <label for="admin_image">@lang('public.admin photo')</label>
                                     <input type="file" class="form-control" id="admin_image" name="admin_image">
                                     {{-- Show the admin image if exists --}}
                                     @if (!empty(Auth::guard('admin')->user()->image)) {{-- Accessing Specific Guard Instances: https://laravel.com/docs/9.x/authentication#accessing-specific-guard-instances --}}
-                                        <a target="_blank" href="{{ url('admin/images/photos/' . Auth::guard('admin')->user()->image) }}">View Image</a> <!-- We used    target="_blank"    to open the image in another separate page --> {{-- Accessing Specific Guard Instances: https://laravel.com/docs/9.x/authentication#accessing-specific-guard-instances --}}
+                                        <a target="_blank" href="{{ url('admin/images/photos/' . Auth::guard('admin')->user()->image) }}">@lang('public.view image')</a> <!-- We used    target="_blank"    to open the image in another separate page --> {{-- Accessing Specific Guard Instances: https://laravel.com/docs/9.x/authentication#accessing-specific-guard-instances --}}
                                         <input type="hidden" name="current_admin_image" value="{{ Auth::guard('admin')->user()->image }}"> <!-- to send the current admin image url all the time with all the requests --> {{-- Accessing Specific Guard Instances: https://laravel.com/docs/9.x/authentication#accessing-specific-guard-instances --}}
                                     @endif
                                 </div>
-                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                <button type="reset"  class="btn btn-light">Cancel</button>
+                                <button type="submit" class="btn btn-primary mr-2">@lang('public.submit')</button>
+                                <button type="reset"  class="btn btn-light">@lang('public.cancel')</button>
                             </form>
                         </div>
                     </div>

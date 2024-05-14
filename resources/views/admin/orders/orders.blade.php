@@ -9,8 +9,8 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Orders</h4>
-                            
+                            <h4 class="card-title">@lang('public.orders')</h4>
+
 
 
                             <div class="table-responsive pt-3">
@@ -18,15 +18,15 @@
                                 <table id="orders" class="table table-bordered"> {{-- using the id here for the DataTable --}}
                                     <thead>
                                         <tr>
-                                            <th>Order ID</th>
-                                            <th>Order Date</th>
-                                            <th>Customer Name</th>
-                                            <th>Customer Email</th>
-                                            <th>Ordered Products</th>
-                                            <th>Order Amount</th>
-                                            <th>Order Status</th>
-                                            <th>Payment Method</th>
-                                            <th>Actions</th>
+                                            <th>@lang('public.order') ID</th>
+                                            <th>@lang('public.order date')</th>
+                                            <th>@lang('public.customer name')</th>
+                                            <th>@lang('public.customer email')</th>
+                                            <th>@lang('public.ordered products')</th>
+                                            <th>@lang('public.order amount')</th>
+                                            <th>@lang('public.order status')</th>
+                                            <th>@lang('public.payment method')</th>
+                                            <th>@lang('public.actions')</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -55,13 +55,13 @@
                                                         </a>
                                                         &nbsp;&nbsp;
 
-                                                        {{-- View HTML invoice --}} 
+                                                        {{-- View HTML invoice --}}
                                                         <a title="View Order Invoice" href="{{ url('admin/orders/invoice/' . $order['id']) }}" target="_blank">
                                                             <i style="font-size: 25px" class="mdi mdi-printer"></i> {{-- Icons from Skydash Admin Panel Template --}}
                                                         </a>
                                                         &nbsp;&nbsp;
 
-                                                        {{-- View PDF invoice --}} 
+                                                        {{-- View PDF invoice --}}
                                                         <a title="Print PDF Invoice" href="{{ url('admin/orders/invoice/pdf/' . $order['id']) }}" target="_blank">
                                                             <i style="font-size: 25px" class="mdi mdi-file-pdf"></i> {{-- Icons from Skydash Admin Panel Template --}}
                                                         </a>

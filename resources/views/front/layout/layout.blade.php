@@ -37,6 +37,7 @@
             @endif
 
         </title>
+
         <!-- Standard Favicon -->
         <link href="/admin/images/dashboard/logo-nobiarts.png" rel="shortcut icon">
         <!-- Base Google Font for Web-app -->
@@ -49,6 +50,7 @@
         <link rel="stylesheet" href="{{ url('front/css/fontawesome.min.css') }}">
         <!-- Ion-Icons 4 -->
         <link rel="stylesheet" href="{{ url('front/css/ionicons.min.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- Animate CSS -->
         <link rel="stylesheet" href="{{ url('front/css/animate.min.css') }}">
         <!-- Owl-Carousel -->

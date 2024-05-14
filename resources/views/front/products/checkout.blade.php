@@ -7,14 +7,14 @@
     <div class="page-style-a">
         <div class="container">
             <div class="page-intro">
-                <h2 style="color:#792D89">Checkout</h2>
+                <h2 style="color:#792D89">@lang('public.checkout')</h2>
                 <ul class="bread-crumb">
                     <li class="has-separator">
                         <i class="ion ion-md-home"></i>
-                        <a href="index.html">Home</a>
+                        <a href="/">@lang('public.home')</a>
                     </li>
                     <li class="is-marked">
-                        <a href="checkout.html">Checkout</a>
+                        <a href="checkout.html">@lang('public.checkout')</a>
                     </li>
                 </ul>
             </div>
@@ -27,7 +27,7 @@
 
             @if (Session::has('error_message'))
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>Error:</strong> {{ Session::get('error_message') }}
+                    <strong>@lang('public.error:')</strong> {{ Session::get('error_message') }}
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -55,33 +55,15 @@
                             <div class="col-lg-6">
                                 <form name="checkoutForm" id="checkoutForm" action="{{ url('/checkout') }}" method="post">
                                     @csrf
-                                    @if (count($deliveryAddresses) > 0)
-                                        <h4 class="section-h4">Delivery Addresses</h4>
-
-                                        @foreach ($deliveryAddresses as $address)
-                                            <div class="control-group" style="float: left; margin-right: 5px">
-
-                                                <input type="radio" id="address{{ $address['id'] }}" name="address_id" value="{{ $address['id'] }}" shipping_charges="{{ $address['shipping_charges'] }}" total_price="{{ $total_price }}" coupon_amount="{{ \Illuminate\Support\Facades\Session::get('couponAmount') }}" codpincodeCount="{{ $address['codpincodeCount'] }}" prepaidpincodeCount="{{ $address['prepaidpincodeCount'] }}">
-                                            </div>
-                                            <div>
-                                                <label class="control-label" for="address{{ $address['id'] }}">
-                                                    {{ $address['name'] }}, {{ $address['address'] }}, {{ $address['city'] }}, {{ $address['state'] }}, {{ $address['country'] }} ({{ $address['mobile'] }})
-                                                </label>
-                                                <a href="javascript:;" data-addressid="{{ $address['id'] }}" class="removeAddress" style="float: right; margin-left: 10px">Remove</a>
-                                                <a href="javascript:;" data-addressid="{{ $address['id'] }}" class="editAddress"   style="float: right"                   >Edit</a>
-                                            </div>
-                                        @endforeach
-                                        <br>
-                                    @endif
 
 
-                                    <h4 class="section-h4">Your Order</h4>
+                                    <h4 class="section-h4">@lang('public.your order')</h4>
                                     <div class="order-table">
                                         <table class="u-s-m-b-13">
                                             <thead>
                                                 <tr>
-                                                    <th>Product</th>
-                                                    <th>Total</th>
+                                                    <th>@lang('public.product')</th>
+                                                    <th>@lang('public.total')</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -105,7 +87,7 @@
                                                             <span class="order-span-quantity">x {{ $item['quantity'] }}</span>
                                                         </td>
                                                         <td>
-                                                            <h6 class="order-h6">EGP{{ $getDiscountAttributePrice['final_price'] * $item['quantity'] }}</h6>
+                                                            <h6 class="order-h6">{{ session("currency") }}{{ $getDiscountAttributePrice['final_price'] * $item['quantity'] }}</h6>
                                                         </td>
                                                     </tr>
 
@@ -118,44 +100,45 @@
 
                                                 <tr>
                                                     <td>
-                                                        <h3 class="order-h3">Subtotal</h3>
+                                                        <h3 class="order-h3">@lang('public.subtotal')</h3>
                                                     </td>
                                                     <td>
-                                                        <h3 class="order-h3">EGP{{ $total_price }}</h3>
+                                                        <h3 class="order-h3">{{ session("currency") }}{{ $total_price }}</h3>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <h6 class="order-h6">Shipping Charges</h6>
+                                                        <h6 class="order-h6">@lang('public.shipping charges')</h6>
                                                     </td>
                                                     <td>
                                                         <h6 class="order-h6">
-                                                            <span class="shipping_charges">EGP0</span>
+                                                            <span class="shipping_charges">{{ session("currency") }}0</span>
                                                         </h6>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <h6 class="order-h6">Coupon Discount</h6>
+                                                        <h6 class="order-h6">@lang('public.coupon discount')</h6>
                                                     </td>
                                                     <td>
                                                         <h6 class="order-h6">
 
                                                             @if (\Illuminate\Support\Facades\Session::has('couponAmount'))
-                                                                <span class="couponAmount">EGP{{ \Illuminate\Support\Facades\Session::get('couponAmount') }}</span>
+                                                                                <span class="couponAmount">{{ session("currency") }}{{ \Illuminate\Support\Facades\Session::get('couponAmount') }}</span>
+
                                                             @else
-                                                                EGP0
+                                                                {{ session("currency") }}0
                                                             @endif
                                                         </h6>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <h3 class="order-h3">Grand Total</h3>
+                                                        <h3 class="order-h3">@lang('public.grand total')</h3>
                                                     </td>
                                                     <td>
                                                         <h3 class="order-h3">
-                                                            <strong class="grand_total">EGP{{ $total_price - \Illuminate\Support\Facades\Session::get('couponAmount') }}</strong>
+                                                            <strong class="grand_total">{{ session("currency") }}{{ $total_price - \Illuminate\Support\Facades\Session::get('couponAmount') }}</strong>
                                                         </h3>
                                                     </td>
                                                 </tr>
@@ -165,7 +148,7 @@
                                         </table>
                                         <div class="u-s-m-b-13 codMethod">
                                             <input type="radio" class="radio-box" name="payment_gateway" id="cash-on-delivery" value="COD">
-                                            <label class="label-text" for="cash-on-delivery">Cash on Delivery</label>
+                                            <label class="label-text" for="cash-on-delivery">@lang('public.cash on delivery')</label>
                                         </div>
                                         <div class="u-s-m-b-13 prepaidMethod">
                                             <input type="radio" class="radio-box" name="payment_gateway" id="paypal" value="Paypal">
@@ -178,15 +161,38 @@
                                             <input type="radio" class="radio-box" name="payment_gateway" id="iyzipay" value="iyzipay">
                                             <label class="label-text" for="iyzipay">iyzipay</label>
                                         </div> --}}
+                                        @if (count($deliveryAddresses) > 0)
+                                        <h4 class="section-h4">@lang('public.delivery address')</h4>
+
+                                        @foreach ($deliveryAddresses as $address)
+                                            <div class="control-group" style="float: left; margin-right: 5px">
+
+                                                <input type="radio" id="address{{ $address['id'] }}" name="address_id" value="{{ $address['id'] }}" shipping_charges="{{ $address['shipping_charges'] }}" total_price="{{ $total_price }}" coupon_amount="{{ \Illuminate\Support\Facades\Session::get('couponAmount') }}" codpincodeCount="{{ $address['codpincodeCount'] }}" prepaidpincodeCount="{{ $address['prepaidpincodeCount'] }}">
+                                            </div>
+                                            <div>
+                                                <label class="control-label" for="address{{ $address['id'] }}">
+                                                    {{ $address['name'] }}, {{ $address['address'] }}, {{ $address['city'] }}, {{ $address['state'] }}, {{ $address['country'] }} ({{ $address['mobile'] }})
+                                                </label>
+                                                <a href="javascript:;" data-addressid="{{ $address['id'] }}" class="removeAddress" style="float: right; margin-left: 10px"><i class="fa fa-trash-o" style="font-size:24px;color:red"></i>
+                                                </a>
+                                                <a href="javascript:;" data-addressid="{{ $address['id'] }}" class="editAddress"   style="float: right"                   ><i class="fa fa-edit" style="font-size:24px;"></i>
+                                                </a>
+                                            </div>
+                                        @endforeach
+                                        <br>
+                                    @endif
 
 
                                         <div class="u-s-m-b-13">
                                             <input type="checkbox" class="check-box" id="accept" name="accept" value="Yes" title="Please agree to T&C">
-                                            <label class="label-text no-color" for="accept">I’ve read and accept the
-                                                <a href="terms-and-conditions.html" class="u-c-brand">terms & conditions</a>
+                                            <label class="label-text no-color" for="accept">@lang('public.i’ve read and accept the')
+                                                <a href="{{ route('terms') }}" class="u-c-brand">@lang('public.terms & conditions')</a>
                                             </label>
+
+
+
                                         </div>
-                                        <button type="submit" id="placeOrder" class="button button-outline-secondary">Place Order</button>
+                                        <button type="submit" id="placeOrder" class="button button-outline-secondary">@lang('public.place order')</button>
                                     </div>
                                 </form>
 

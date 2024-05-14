@@ -5,9 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use App\Models\Currency;
 use Illuminate\Support\Facades\Session;
-
 
 class SetCurrency
 {
@@ -16,10 +14,11 @@ class SetCurrency
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): Response
     {
-        $currency = session('currency', 'RUB');
-        $exchangeRate = session('exchange_rate', 1);
+        $currency = Session::get('currency', 'RUB');
+
+        $exchangeRate = Session::get('exchange_rate', 1);
 
         Session::put('currency', $currency);
         Session::put('exchange_rate', $exchangeRate);

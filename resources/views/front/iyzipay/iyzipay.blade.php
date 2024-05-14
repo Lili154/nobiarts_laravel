@@ -19,7 +19,7 @@
         margin: 4px 2px;
         cursor: pointer;
         }
-        
+
         .button1 {background-color: #4CAF50;} /* Green */
         .button2 {background-color: #008CBA;} /* Blue */
     </style>
@@ -34,7 +34,7 @@
                 <ul class="bread-crumb">
                     <li class="has-separator">
                         <i class="ion ion-md-home"></i>
-                        <a href="index.html">Home</a>
+                        <a href="/">Home</a>
                     </li>
                     <li class="is-marked">
                         <a href="#">Proceed to Payment</a>

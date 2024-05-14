@@ -8,19 +8,19 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Coupons</h4>
-                            
+                            <h4 class="card-title">@lang('public.coupons')</h4>
 
 
-                            
-                            <a href="{{ url('admin/add-edit-coupon') }}" style="max-width: 150px; float: right; display: inline-block" class="btn btn-block btn-primary">Add Coupon</a>
+
+
+                            <a href="{{ url('admin/add-edit-coupon') }}" style="max-width: 150px; float: right; display: inline-block" class="btn btn-block btn-primary">@lang('public.add coupon')</a>
 
                             {{-- Displaying The Validation Errors: https://laravel.com/docs/9.x/validation#quick-displaying-the-validation-errors AND https://laravel.com/docs/9.x/blade#validation-errors --}}
                             {{-- Determining If An Item Exists In The Session (using has() method): https://laravel.com/docs/9.x/session#determining-if-an-item-exists-in-the-session --}}
                             {{-- Our Bootstrap success message in case of updating admin password is successful: --}}
                             @if (Session::has('success_message')) <!-- Check AdminController.php, updateAdminPassword() method -->
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    <strong>Success:</strong> {{ Session::get('success_message') }}
+                                    <strong>@lang('public.success:')</strong> {{ Session::get('success_message') }}
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                     </button>
@@ -34,12 +34,12 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Coupon Code</th>
-                                            <th>Coupon Type</th>
-                                            <th>Amount</th>
-                                            <th>Expiry Date</th>
-                                            <th>Status</th>
-                                            <th>Actions</th>
+                                            <th>@lang('public.coupon code')</th>
+                                            <th>@lang('public.coupon type')</th>
+                                            <th>@lang('public.amount')</th>
+                                            <th>@lang('public.expiry date')</th>
+                                            <th>@lang('public.status')</th>
+                                            <th>@lang('public.actions')</th>
                                         </tr>
                                     </thead>
                                     <tbody>

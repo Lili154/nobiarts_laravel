@@ -13,14 +13,14 @@
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>Admin ID</th>
-                                            <th>Name</th>
-                                            <th>Type</th>
-                                            <th>Mobile</th>
-                                            <th>Email</th>
-                                            <th>Image</th>
-                                            <th>Status</th>
-                                            <th>Actions</th>
+                                            <th>@lang('public.admin') ID</th>
+                                            <th>@lang('public.name')</th>
+                                            <th>@lang('public.type')</th>
+                                            <th>@lang('public.mobile')</th>
+                                            <th>@lang('public.email')</th>
+                                            <th>@lang('public.image')</th>
+                                            <th>@lang('public.status')</th>
+                                            <th>@lang('public.actions')</th>
                                         </tr>
                                     </thead>
                                     <tbody>
